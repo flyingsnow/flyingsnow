@@ -1,0 +1,267 @@
+BL51 BANKED LINKER/LOCATER V6.05                                                        06/25/2010  16:26:34  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
+D:\TOOLSET\KEIL\C51\BIN\BL51.EXE .\main.obj, .\interrupt.obj, .\timer.obj TO SwRadio RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\main.obj (MAIN)
+  .\interrupt.obj (INTERRUPT)
+  .\timer.obj (TIMER)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?SLCMP)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LLDPTR)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LSTPTR)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LSTOPTR)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LLDIDATA)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LLDXDATA)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LLDPDATA)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LLDCODE)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LSTIDATA)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LSTXDATA)
+  D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?LSTPDATA)
+
+
+LINK MAP OF MODULE:  SwRadio (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000DH     UNIT         ?DT?MAIN
+            DATA    0015H     0004H     UNIT         _DATA_GROUP_
+            IDATA   0019H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     005DH     UNIT         ?PR?_ISTIMEOUT?TIMER
+                    0060H     000BH                  *** GAP ***
+            CODE    006BH     0003H     ABSOLUTE     
+            CODE    006EH     011BH     UNIT         ?C?LIB_CODE
+            CODE    0189H     003DH     UNIT         ?PR?MAIN?MAIN
+            CODE    01C6H     003BH     UNIT         ?PR?_TIMEOUTSET?TIMER
+            CODE    0201H     0022H     UNIT         ?PR?SYSTICKINIT?INTERRUPT
+            CODE    0223H     0019H     UNIT         ?PR?TIMER4?INTERRUPT
+            CODE    023CH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   SwRadio (MAIN)
+
+
+SEGMENT                             DATA_GROUP 
+  +--> CALLED SEGMENT             START    LENGTH
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/25/2010  16:26:34  PAGE 2
+
+
+-------------------------------------------------
+?C_C51STARTUP                     -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                     -----    -----
+  +--> ?PR?SYSTICKINIT?INTERRUPT
+  +--> ?PR?_TIMEOUTSET?TIMER
+  +--> ?PR?_ISTIMEOUT?TIMER
+
+?PR?_TIMEOUTSET?TIMER             0015H    0004H
+
+?PR?_ISTIMEOUT?TIMER              0015H    0003H
+
+
+
+SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:0080H         PUBLIC        P5
+  B:0080H.4       PUBLIC        P0_4
+  D:00E1H         PUBLIC        P0CR
+  C:0189H         PUBLIC        main
+  D:0008H         PUBLIC        gSysTick
+  D:00E9H         PUBLIC        P0PCR
+  D:000CH         PUBLIC        sBlinkTimer
+  -------         PROC          MAIN
+  C:0189H         LINE#         8
+  C:0189H         LINE#         9
+  C:0189H         LINE#         10
+  C:018CH         LINE#         11
+  C:019DH         LINE#         12
+  C:01A0H         LINE#         13
+  C:01A3H         LINE#         14
+  C:01A5H         LINE#         15
+  C:01A5H         LINE#         16
+  C:01B1H         LINE#         17
+  C:01B3H         LINE#         18
+  C:01C4H         LINE#         19
+  C:01C4H         LINE#         20
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        INTERRUPT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/25/2010  16:26:34  PAGE 3
+
+
+  D:00C0H         PUBLIC        P4
+  D:0080H         PUBLIC        P5
+  B:00A8H.7       PUBLIC        EA
+  D:00A9H         PUBLIC        IEN1
+  C:0223H         PUBLIC        Timer4
+  D:0086H         PUBLIC        INSCON
+  D:00CDH         PUBLIC        TH4
+  D:00CCH         PUBLIC        TL4
+  B:00C8H.1       PUBLIC        TR4
+  B:00C8H.4       PUBLIC        T4PS0
+  C:0201H         PUBLIC        SysTickInit
+  -------         PROC          SYSTICKINIT
+  C:0201H         LINE#         7
+  C:0201H         LINE#         10
+  C:0201H         LINE#         12
+  C:020CH         LINE#         13
+  C:020EH         LINE#         14
+  C:0211H         LINE#         16
+  C:0213H         LINE#         18
+  C:0216H         LINE#         19
+  C:0218H         LINE#         20
+  C:021AH         LINE#         21
+  C:021DH         LINE#         22
+  C:0220H         LINE#         23
+  C:0222H         LINE#         24
+  -------         ENDPROC       SYSTICKINIT
+  -------         PROC          TIMER4
+  C:0223H         LINE#         33
+  C:0225H         LINE#         36
+  C:022BH         LINE#         37
+  C:022BH         LINE#         38
+  C:0231H         LINE#         39
+  C:0231H         LINE#         40
+  C:0237H         LINE#         41
+  C:0237H         LINE#         42
+  C:0239H         LINE#         43
+  C:0239H         LINE#         44
+  C:0239H         LINE#         45
+  C:0239H         LINE#         47
+  -------         ENDPROC       TIMER4
+  -------         ENDMOD        INTERRUPT
+
+  -------         MODULE        TIMER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:0080H         PUBLIC        P5
+  C:0003H         PUBLIC        _IsTimeOut
+  D:00A9H         PUBLIC        IEN1
+  C:01C6H         PUBLIC        _TimeOutSet
+  -------         PROC          _TIMEOUTSET
+  D:0001H         SYMBOL        timer
+  D:0015H         SYMBOL        timeout
+  C:01C6H         LINE#         6
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/25/2010  16:26:34  PAGE 4
+
+
+  C:01CEH         LINE#         10
+  C:01CEH         LINE#         11
+  C:01D1H         LINE#         12
+  C:01DFH         LINE#         13
+  C:01F6H         LINE#         14
+  C:01FDH         LINE#         15
+  C:0200H         LINE#         17
+  -------         ENDPROC       _TIMEOUTSET
+  -------         PROC          _ISTIMEOUT
+  D:0015H         SYMBOL        timer
+  C:0003H         LINE#         24
+  C:0009H         LINE#         27
+  C:0009H         LINE#         28
+  C:000CH         LINE#         29
+  C:001AH         LINE#         30
+  C:001AH         LINE#         35
+  C:0041H         LINE#         36
+  C:0041H         LINE#         37
+  C:004FH         LINE#         38
+  C:004FH         LINE#         39
+  C:004FH         LINE#         40
+  C:0052H         LINE#         41
+  C:005FH         LINE#         42
+  -------         ENDPROC       _ISTIMEOUT
+  -------         ENDMOD        TIMER
+
+  -------         MODULE        ?C?CLDOPTR
+  C:006EH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:009BH         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?SLCMP
+  C:00BDH         PUBLIC        ?C?SLCMP
+  -------         ENDMOD        ?C?SLCMP
+
+  -------         MODULE        ?C?LLDPTR
+  C:00D3H         PUBLIC        ?C?LLDPTR
+  -------         ENDMOD        ?C?LLDPTR
+
+  -------         MODULE        ?C?LSTPTR
+  C:00F3H         PUBLIC        ?C?LSTPTR
+  -------         ENDMOD        ?C?LSTPTR
+
+  -------         MODULE        ?C?LSTOPTR
+  C:010DH         PUBLIC        ?C?LSTOPTR
+  -------         ENDMOD        ?C?LSTOPTR
+
+  -------         MODULE        ?C?LLDIDATA
+  C:0131H         PUBLIC        ?C?LLDIDATA
+  -------         ENDMOD        ?C?LLDIDATA
+
+  -------         MODULE        ?C?LLDXDATA
+  C:013DH         PUBLIC        ?C?LLDXDATA
+  -------         ENDMOD        ?C?LLDXDATA
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/25/2010  16:26:34  PAGE 5
+
+
+
+  -------         MODULE        ?C?LLDPDATA
+  C:0149H         PUBLIC        ?C?LLDPDATA
+  -------         ENDMOD        ?C?LLDPDATA
+
+  -------         MODULE        ?C?LLDCODE
+  C:0155H         PUBLIC        ?C?LLDCODE
+  -------         ENDMOD        ?C?LLDCODE
+
+  -------         MODULE        ?C?LSTIDATA
+  C:0165H         PUBLIC        ?C?LSTIDATA
+  -------         ENDMOD        ?C?LSTIDATA
+
+  -------         MODULE        ?C?LSTXDATA
+  C:0171H         PUBLIC        ?C?LSTXDATA
+  -------         ENDMOD        ?C?LSTXDATA
+
+  -------         MODULE        ?C?LSTPDATA
+  C:017DH         PUBLIC        ?C?LSTPDATA
+  -------         ENDMOD        ?C?LSTPDATA
+
+Program Size: data=26.0 xdata=0 code=573
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,73 @@
+C51 COMPILER V8.08   INTERRUPT                                                             06/25/2010 16:26:34 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE INTERRUPT
+OBJECT MODULE PLACED IN .\interrupt.obj
+COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\interrupt.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.
+                    -\interrupt.lst) OBJECT(.\interrupt.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          
+   3          //
+   4          // System tick 1ms initilization.
+   5          //
+   6          void
+   7          SysTickInit(
+   8                  void
+   9                  )
+  10          {
+  11   1      //#warning      "Ivan: TIMER4 AS SYSTEM TICK!"
+  12   1              gSysTick = 0xFFFFFFF0;
+  13   1              EA = 0;
+  14   1              INSCON |= 0x40; //select Bank1
+  15   1              // prescaler 1/8
+  16   1              T4PS0 = 1;
+  17   1              //1ms preloader value 
+  18   1              TL4 = 0x82;
+  19   1              TH4 = 0xFF;
+  20   1              TR4 = 1;                        //Enable TIM4
+  21   1              INSCON &= ~0x40;        //select Bank0
+  22   1              IEN1 |= 0x40;           //Enable tim4 interrupt 
+  23   1              EA = 1;                         //enable global interrupt control bit                                                                   
+  24   1      }
+  25          
+  26          
+  27          
+  28          
+  29          //
+  30          // TIMER/COUNTER 4 interrupt service function.
+  31          //
+  32          void
+  33          Timer4(void)                    interrupt 13                                            
+  34          {
+  35   1      
+  36   1              if(!++(*((BYTE*)(&gSysTick) + 3)))    
+  37   1              {
+  38   2                      if(!++(*((BYTE*)(&gSysTick) + 2)))
+  39   2                      {
+  40   3                              if(!++(*((BYTE*)(&gSysTick) + 1)))
+  41   3                              {
+  42   4                              (*((BYTE*)(&gSysTick) + 0))++;
+  43   4                              }
+  44   3                      }
+  45   2              }
+  46   1      
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     59    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V8.08   INTERRUPT                                                             06/25/2010 16:26:34 PAGE 2   
+
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
