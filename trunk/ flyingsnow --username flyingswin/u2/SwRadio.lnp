@@ -1,0 +1,5 @@
+".\main.obj",
+".\interrupt.obj",
+".\timer.obj" 
+TO "SwRadio" 
+RAMSIZE(256) 

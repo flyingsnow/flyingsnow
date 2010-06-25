@@ -1,0 +1,69 @@
+C51 COMPILER V8.08   TIMER                                                                 06/25/2010 16:26:34 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\timer.obj
+COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\timer.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\tim
+                    -er.lst) OBJECT(.\timer.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          //
+   3          // Set time out value of softtimer.
+   4          //
+   5          VOID
+   6          TimeOutSet(
+   7                  TIMER   *timer,
+   8                  DWORD   timeout                 //The maximum value is 0x80000000 ms (about 24 days)
+   9                  )
+  10          {
+  11   1              IEN1 &= ~0x40;          //Disable tim4 interrupt 
+  12   1              timer->RecTickVal = gSysTick;
+  13   1              timer->TimeOutVal = gSysTick + timeout;         
+  14   1              timer->IsTimeOut = FALSE;
+  15   1              IEN1 |= 0x40;           //Enable tim4 interrupt 
+  16   1                              
+  17   1      }
+  18          
+  19          
+  20          //
+  21          // Check whether time out.
+  22          //
+  23          BOOL
+  24          IsTimeOut(
+  25                  TIMER   *timer
+  26                  )
+  27          {
+  28   1              IEN1 &= ~0x40;          //disable tim4 interrupt 
+  29   1              if(!timer->IsTimeOut)
+  30   1              {
+  31   2                      //After gSysTick and timer->TimeOutVal overflow, 
+  32   2                      //the software timer function can still work well
+  33   2                      //the next statement is equivalent to:
+  34   2                      //(gSysTick - timer->TimeOutVal) < 0x80000000 
+  35   2                      if((SDWORD)(gSysTick - timer->TimeOutVal) > 0)
+  36   2                      {
+  37   3                              timer->IsTimeOut = TRUE;
+  38   3                      }
+  39   2              }       
+  40   1              IEN1 |= 0x40;           //Enable tim4 interrupt 
+  41   1              return timer->IsTimeOut;
+  42   1      }
+  43          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    152    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V8.08   TIMER                                                                 06/25/2010 16:26:34 PAGE 2   
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

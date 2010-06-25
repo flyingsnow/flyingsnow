@@ -1,0 +1,46 @@
+C51 COMPILER V8.08   MAIN                                                                  06/25/2010 16:26:34 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\main.obj
+COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\main.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\main
+                    -.lst) OBJECT(.\main.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "interrupt.h"
+   3          
+   4          DWORD   DATA    gSysTick;                                       //system tick counter
+   5          TIMER   sBlinkTimer;
+   6          
+   7          
+   8          main()
+   9          {
+  10   1              SysTickInit();
+  11   1              TimeOutSet(&sBlinkTimer,1000);
+  12   1              P0CR = 0xff;
+  13   1              P0PCR = 0xff;
+  14   1              P0_4 = 1;
+  15   1              while(1) {
+  16   2                      if(IsTimeOut(&sBlinkTimer)) {
+  17   3                              P0_4 = ~P0_4;
+  18   3                              TimeOutSet(&sBlinkTimer,1000);
+  19   3                      }
+  20   2              }
+  21   1              return 0;
+  22   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     61    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     13    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
