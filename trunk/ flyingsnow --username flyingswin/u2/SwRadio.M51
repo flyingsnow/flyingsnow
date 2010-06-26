@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.05                                                        06/26/2010  11:43:11  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.05                                                        06/26/2010  17:31:03  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
-D:\TOOLSET\KEIL\C51\BIN\BL51.EXE .\main.obj, .\interrupt.obj, .\timer.obj TO SwRadio RAMSIZE (256)
+D:\TOOLSET\KEIL\C51\BIN\BL51.EXE .\main.obj, .\interrupt.obj, .\timer.obj, .\adc.obj TO SwRadio RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -12,6 +12,7 @@ INPUT MODULES INCLUDED:
   .\main.obj (MAIN)
   .\interrupt.obj (INTERRUPT)
   .\timer.obj (TIMER)
+  .\adc.obj (ADC)
   D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
   D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
   D:\TOOLSET\KEIL\C51\LIB\C51S.LIB (?C?CSTOPTR)
@@ -37,43 +38,55 @@ LINK MAP OF MODULE:  SwRadio (MAIN)
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
             DATA    0008H     000DH     UNIT         ?DT?MAIN
-            DATA    0015H     0004H     UNIT         _DATA_GROUP_
-            IDATA   0019H     0001H     UNIT         ?STACK
+            DATA    0015H     0006H     UNIT         _DATA_GROUP_
+            IDATA   001BH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
             CODE    0003H     005DH     UNIT         ?PR?_ISTIMEOUT?TIMER
-                    0060H     000BH                  *** GAP ***
+            CODE    0060H     000AH     UNIT         ?PR?INITGPIO?MAIN
+                    006AH     0001H                  *** GAP ***
             CODE    006BH     0003H     ABSOLUTE     
             CODE    006EH     011BH     UNIT         ?C?LIB_CODE
-            CODE    0189H     0050H     UNIT         ?PR?MAIN?MAIN
-            CODE    01D9H     003BH     UNIT         ?PR?_TIMEOUTSET?TIMER
-            CODE    0214H     0023H     UNIT         ?PR?SYSTICKINIT?INTERRUPT
-            CODE    0237H     0019H     UNIT         ?PR?TIMER4?INTERRUPT
-            CODE    0250H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0189H     0051H     UNIT         ?PR?MAIN?MAIN
+            CODE    01DAH     003BH     UNIT         ?PR?_TIMEOUTSET?TIMER
+            CODE    0215H     0023H     UNIT         ?PR?SYSTICKINIT?INTERRUPT
+            CODE    0238H     0019H     UNIT         ?PR?TIMER4?INTERRUPT
+            CODE    0251H     0017H     UNIT         ?PR?_ADCREADCHANNEL?ADC
+            CODE    0268H     0015H     UNIT         ?PR?ADC_GETCONVERSIONVALUE?ADC
+            CODE    027DH     000CH     UNIT         ?PR?_ADC_START?ADC
+            CODE    0289H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0295H     000AH     UNIT         ?PR?INITADC?ADC
+
+
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 2
 
 
 
 OVERLAY MAP OF MODULE:   SwRadio (MAIN)
 
 
-SEGMENT                             DATA_GROUP 
-  +--> CALLED SEGMENT             START    LENGTH
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  11:43:11  PAGE 2
-
-
--------------------------------------------------
-?C_C51STARTUP                     -----    -----
+SEGMENT                                  DATA_GROUP 
+  +--> CALLED SEGMENT                  START    LENGTH
+------------------------------------------------------
+?C_C51STARTUP                          -----    -----
   +--> ?PR?MAIN?MAIN
 
-?PR?MAIN?MAIN                     -----    -----
+?PR?MAIN?MAIN                          0015H    0002H
   +--> ?PR?SYSTICKINIT?INTERRUPT
-  +--> ?PR?_TIMEOUTSET?TIMER
+  +--> ?PR?INITGPIO?MAIN
+  +--> ?PR?INITADC?ADC
   +--> ?PR?_ISTIMEOUT?TIMER
+  +--> ?PR?_ADCREADCHANNEL?ADC
+  +--> ?PR?_TIMEOUTSET?TIMER
 
-?PR?_TIMEOUTSET?TIMER             0015H    0004H
+?PR?_ISTIMEOUT?TIMER                   0017H    0003H
 
-?PR?_ISTIMEOUT?TIMER              0015H    0003H
+?PR?_ADCREADCHANNEL?ADC                0017H    0001H
+  +--> ?PR?_ADC_START?ADC
+  +--> ?PR?ADC_GETCONVERSIONVALUE?ADC
+
+?PR?_TIMEOUTSET?TIMER                  0017H    0004H
 
 
 
@@ -91,40 +104,48 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
   D:00C0H         PUBLIC        P4
   D:0080H         PUBLIC        P5
   B:00A8H.7       PUBLIC        EA
-  B:0080H.4       PUBLIC        P0_4
   D:00E1H         PUBLIC        P0CR
+  D:00E4H         PUBLIC        P3CR
+  D:00E5H         PUBLIC        P4CR
   C:0189H         PUBLIC        main
+  C:0060H         PUBLIC        InitGpio
   D:0008H         PUBLIC        gSysTick
   D:00B2H         PUBLIC        CLKCON
-  D:00E9H         PUBLIC        P0PCR
   D:000CH         PUBLIC        sBlinkTimer
+  -------         PROC          INITGPIO
+  C:0060H         LINE#         7
+  C:0060H         LINE#         8
+  C:0060H         LINE#         9
+  C:0063H         LINE#         10
+  C:0066H         LINE#         11
+  C:0069H         LINE#         13
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 3
+
+
+  -------         ENDPROC       INITGPIO
   -------         PROC          MAIN
   -------         DO            
-  D:0007H         SYMBOL        Wait
+  D:0015H         SYMBOL        Wait
   -------         ENDDO         
-  C:0189H         LINE#         8
-  C:0189H         LINE#         9
-  C:0189H         LINE#         10
-  C:018BH         LINE#         11
-  C:018DH         LINE#         12
-  C:0190H         LINE#         13
-  C:0196H         LINE#         14
-  C:0197H         LINE#         15
-  C:0199H         LINE#         16
-  C:019CH         LINE#         17
-  C:019FH         LINE#         18
-  C:01B0H         LINE#         19
-  C:01B3H         LINE#         20
-  C:01B6H         LINE#         21
-  C:01B8H         LINE#         22
-  C:01B8H         LINE#         23
-  C:01C4H         LINE#         24
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  11:43:11  PAGE 3
-
-
-  C:01C6H         LINE#         25
-  C:01D7H         LINE#         26
-  C:01D7H         LINE#         27
+  C:0189H         LINE#         17
+  C:0189H         LINE#         18
+  C:0189H         LINE#         19
+  C:018FH         LINE#         20
+  C:0191H         LINE#         21
+  C:0194H         LINE#         22
+  C:01A1H         LINE#         23
+  C:01A2H         LINE#         24
+  C:01A4H         LINE#         25
+  C:01A7H         LINE#         26
+  C:01AAH         LINE#         27
+  C:01ADH         LINE#         28
+  C:01B0H         LINE#         29
+  C:01B2H         LINE#         30
+  C:01B2H         LINE#         31
+  C:01BEH         LINE#         32
+  C:01C7H         LINE#         33
+  C:01D8H         LINE#         34
+  C:01D8H         LINE#         35
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -138,50 +159,50 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
   D:0080H         PUBLIC        P5
   B:00A8H.7       PUBLIC        EA
   D:00A9H         PUBLIC        IEN1
-  C:0237H         PUBLIC        Timer4
+  C:0238H         PUBLIC        Timer4
   D:0086H         PUBLIC        INSCON
   D:00CDH         PUBLIC        TH4
   D:00CCH         PUBLIC        TL4
   B:00C8H.1       PUBLIC        TR4
   B:00C8H.4       PUBLIC        T4PS0
-  C:0214H         PUBLIC        SysTickInit
+  C:0215H         PUBLIC        SysTickInit
   -------         PROC          SYSTICKINIT
-  C:0214H         LINE#         7
-  C:0214H         LINE#         10
-  C:0214H         LINE#         12
-  C:021FH         LINE#         13
-  C:0221H         LINE#         14
-  C:0224H         LINE#         16
-  C:0226H         LINE#         18
-  C:0229H         LINE#         19
-  C:022CH         LINE#         20
-  C:022EH         LINE#         21
-  C:0231H         LINE#         22
-  C:0234H         LINE#         23
-  C:0236H         LINE#         24
+  C:0215H         LINE#         7
+  C:0215H         LINE#         10
+  C:0215H         LINE#         12
+  C:0220H         LINE#         13
+  C:0222H         LINE#         14
+  C:0225H         LINE#         16
+  C:0227H         LINE#         18
+  C:022AH         LINE#         19
+  C:022DH         LINE#         20
+  C:022FH         LINE#         21
+  C:0232H         LINE#         22
+  C:0235H         LINE#         23
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 4
+
+
+  C:0237H         LINE#         24
   -------         ENDPROC       SYSTICKINIT
   -------         PROC          TIMER4
-  C:0237H         LINE#         33
-  C:0239H         LINE#         36
-  C:023FH         LINE#         37
-  C:023FH         LINE#         38
-  C:0245H         LINE#         39
-  C:0245H         LINE#         40
-  C:024BH         LINE#         41
-  C:024BH         LINE#         42
-  C:024DH         LINE#         43
-  C:024DH         LINE#         44
-  C:024DH         LINE#         45
-  C:024DH         LINE#         47
+  C:0238H         LINE#         33
+  C:023AH         LINE#         36
+  C:0240H         LINE#         37
+  C:0240H         LINE#         38
+  C:0246H         LINE#         39
+  C:0246H         LINE#         40
+  C:024CH         LINE#         41
+  C:024CH         LINE#         42
+  C:024EH         LINE#         43
+  C:024EH         LINE#         44
+  C:024EH         LINE#         45
+  C:024EH         LINE#         47
   -------         ENDPROC       TIMER4
   -------         ENDMOD        INTERRUPT
 
   -------         MODULE        TIMER
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0080H         PUBLIC        P0
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  11:43:11  PAGE 4
-
-
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
@@ -189,21 +210,21 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
   D:0080H         PUBLIC        P5
   C:0003H         PUBLIC        _IsTimeOut
   D:00A9H         PUBLIC        IEN1
-  C:01D9H         PUBLIC        _TimeOutSet
+  C:01DAH         PUBLIC        _TimeOutSet
   -------         PROC          _TIMEOUTSET
   D:0001H         SYMBOL        timer
-  D:0015H         SYMBOL        timeout
-  C:01D9H         LINE#         6
-  C:01E1H         LINE#         10
-  C:01E1H         LINE#         11
-  C:01E4H         LINE#         12
-  C:01F2H         LINE#         13
-  C:0209H         LINE#         14
-  C:0210H         LINE#         15
-  C:0213H         LINE#         17
+  D:0017H         SYMBOL        timeout
+  C:01DAH         LINE#         6
+  C:01E2H         LINE#         10
+  C:01E2H         LINE#         11
+  C:01E5H         LINE#         12
+  C:01F3H         LINE#         13
+  C:020AH         LINE#         14
+  C:0211H         LINE#         15
+  C:0214H         LINE#         17
   -------         ENDPROC       _TIMEOUTSET
   -------         PROC          _ISTIMEOUT
-  D:0015H         SYMBOL        timer
+  D:0017H         SYMBOL        timer
   C:0003H         LINE#         24
   C:0009H         LINE#         27
   C:0009H         LINE#         28
@@ -218,7 +239,75 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
   C:0052H         LINE#         41
   C:005FH         LINE#         42
   -------         ENDPROC       _ISTIMEOUT
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 5
+
+
   -------         ENDMOD        TIMER
+
+  -------         MODULE        ADC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:0080H         PUBLIC        P5
+  D:0095H         PUBLIC        ADCH
+  D:0097H         PUBLIC        ADDH
+  D:0096H         PUBLIC        ADDL
+  C:0295H         PUBLIC        InitAdc
+  C:027DH         SYMBOL        _ADC_Start
+  C:0251H         PUBLIC        _AdcReadChannel
+  D:0094H         PUBLIC        ADT
+  D:0093H         PUBLIC        ADCON
+  C:0268H         SYMBOL        ADC_GetConversionValue
+  -------         PROC          INITADC
+  C:0295H         LINE#         3
+  C:0295H         LINE#         4
+  C:0295H         LINE#         5
+  C:0298H         LINE#         6
+  C:029BH         LINE#         7
+  C:029EH         LINE#         8
+  -------         ENDPROC       INITADC
+  -------         PROC          _ADC_START
+  D:0007H         SYMBOL        ADC_Channel
+  C:027DH         LINE#         13
+  C:027DH         LINE#         14
+  C:027DH         LINE#         15
+  C:0280H         LINE#         16
+  C:0285H         LINE#         17
+  C:0288H         LINE#         18
+  -------         ENDPROC       _ADC_START
+  -------         PROC          ADC_GETCONVERSIONVALUE
+  -------         DO            
+  D:0006H         SYMBOL        temph
+  D:0005H         SYMBOL        templ
+  -------         ENDDO         
+  C:0268H         LINE#         24
+  C:0268H         LINE#         25
+  C:0268H         LINE#         30
+  C:026CH         LINE#         31
+  C:026EH         LINE#         33
+  C:0279H         LINE#         35
+  C:027CH         LINE#         37
+  -------         ENDPROC       ADC_GETCONVERSIONVALUE
+  -------         PROC          _ADCREADCHANNEL
+  D:0007H         SYMBOL        ADC_Channel
+  -------         DO            
+  D:0017H         SYMBOL        wait_conuter
+  -------         ENDDO         
+  C:0251H         LINE#         40
+  C:0251H         LINE#         41
+  C:0251H         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 6
+
+
+  C:0254H         LINE#         47
+  C:0260H         LINE#         48
+  C:0264H         LINE#         50
+  C:0267H         LINE#         52
+  -------         ENDPROC       _ADCREADCHANNEL
+  -------         ENDMOD        ADC
 
   -------         MODULE        ?C?CLDOPTR
   C:006EH         PUBLIC        ?C?CLDOPTR
@@ -239,9 +328,6 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
   -------         MODULE        ?C?LSTPTR
   C:00F3H         PUBLIC        ?C?LSTPTR
   -------         ENDMOD        ?C?LSTPTR
-BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  11:43:11  PAGE 5
-
-
 
   -------         MODULE        ?C?LSTOPTR
   C:010DH         PUBLIC        ?C?LSTOPTR
@@ -273,7 +359,10 @@ SYMBOL TABLE OF MODULE:  SwRadio (MAIN)
 
   -------         MODULE        ?C?LSTPDATA
   C:017DH         PUBLIC        ?C?LSTPDATA
+BL51 BANKED LINKER/LOCATER V6.05                                                      06/26/2010  17:31:03  PAGE 7
+
+
   -------         ENDMOD        ?C?LSTPDATA
 
-Program Size: data=26.0 xdata=0 code=593
+Program Size: data=28.0 xdata=0 code=670
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

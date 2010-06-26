@@ -1,4 +1,4 @@
-C51 COMPILER V8.08   MAIN                                                                  06/26/2010 11:43:11 PAGE 1   
+C51 COMPILER V8.08   MAIN                                                                  06/26/2010 17:31:02 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
@@ -14,37 +14,45 @@ line level    source
    4          DWORD   DATA    gSysTick;                                       //system tick counter
    5          TIMER   sBlinkTimer;
    6          
-   7          
-   8          main()
-   9          {
-  10   1              UCHAR Wait = 0x80;
-  11   1              EA = 0;
-  12   1              CLKCON = 0xC8;
-  13   1              while(Wait--){
-  14   2                      _nop_();
-  15   2              }
-  16   1              CLKCON |= 0x04;
-  17   1              SysTickInit();
-  18   1              TimeOutSet(&sBlinkTimer,1000);
-  19   1              P0CR = 0xff;
-  20   1              P0PCR = 0xff;
-  21   1              P0_4 = 1;
-  22   1              while(1) {
-  23   2                      if(IsTimeOut(&sBlinkTimer)) {
-  24   3                              P0_4 = ~P0_4;
-  25   3                              TimeOutSet(&sBlinkTimer,1000);
-  26   3                      }
-  27   2              }
-  28   1              return 0;
-  29   1      }
+   7          VOID  InitGpio(VOID)
+   8          {
+   9   1              P0CR |= 0x30; //P0.4 P0.5 output  
+  10   1              P3CR |= 0xE0; //P3.5 .6 .7 output
+  11   1              P4CR |= 0x18; //p4.3 .4 output
+  12   1              
+  13   1      }
+  14          
+  15          
+  16          
+  17          main()
+  18          {
+  19   1              UINT Wait = 0x80;
+  20   1              EA = 0;
+  21   1              CLKCON = 0xC8;
+  22   1              while(Wait--){
+  23   2                      _nop_();
+  24   2              }
+  25   1              CLKCON |= 0x04;
+  26   1              SysTickInit();
+  27   1              InitGpio();
+  28   1              InitAdc();
+  29   1              TimeOutSet(&sBlinkTimer,1000);
+  30   1              while(1) {
+  31   2                      if(IsTimeOut(&sBlinkTimer)) {
+  32   3                              Wait = AdcReadChannel(ADC_CHANNEL_1);
+  33   3                              TimeOutSet(&sBlinkTimer,1000);
+  34   3                      }
+  35   2              }
+  36   1              return 0;
+  37   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     80    ----
+   CODE SIZE        =     91    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     13    ----
+   DATA SIZE        =     13       2
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

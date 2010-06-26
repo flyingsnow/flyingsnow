@@ -1,15 +1,16 @@
 ### uVision2 Project, (C) Keil Software
 ### Do not modify !
 
-Target (Target 1), 0x0000 // Tools: 'MCS-51'
+Target (SW-RADIO), 0x0000 // Tools: 'MCS-51'
 
 Group (system)
 
 File 1,1,<..\src\main.c><main.c> 0x0 
 File 1,1,<..\src\interrupt.c><interrupt.c> 0x0 
+File 1,1,<..\src\timer.c><timer.c> 0x0 
 
 
-Options 1,0,0  // Target 'Target 1'
+Options 1,0,0  // Target 'SW-RADIO'
  Device (SH79F166)
  Vendor (Sinowealth)
  Cpu (IRAM(0 - 0xFF) IROM(0-0x3FFF) XRAM(0-0xFF) CLOCK(16600000))
@@ -28,10 +29,10 @@ Options 1,0,0  // Target 'Target 1'
  DBC_AMS ()
  DBC_LMS ()
  UseEnv=0
- EnvBin ()
+ EnvBin (D:\Toolset\Keil\C51\BIN\)
  EnvInc ()
  EnvLib ()
- EnvReg (ÿSinowealth\)
+ EnvReg ()
  OrgReg (ÿSinowealth\)
  TgStat=16
  OutDir (.\)
