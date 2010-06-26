@@ -12,16 +12,11 @@ VOID  InitGpio(VOID)
 	
 }
 
-VOID InitAdc(VOID)
-{
-
-
-}
 
 
 main()
 {
-	UCHAR Wait = 0x80;
+	UINT Wait = 0x80;
 	EA = 0;
 	CLKCON = 0xC8;
 	while(Wait--){
@@ -29,10 +24,12 @@ main()
 	}
 	CLKCON |= 0x04;
 	SysTickInit();
+	InitGpio();
+	InitAdc();
 	TimeOutSet(&sBlinkTimer,1000);
 	while(1) {
 		if(IsTimeOut(&sBlinkTimer)) {
-			P0_4 = ~P0_4;
+			Wait = AdcReadChannel(ADC_CHANNEL_1);
 			TimeOutSet(&sBlinkTimer,1000);
 		}
 	}

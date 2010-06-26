@@ -7,6 +7,7 @@
 #include <INTRINS.H>
 #include <sh79f166.h>
 #include "timer.h"
+#include "adc.h"
 
 
 //
@@ -14,22 +15,18 @@
 #define MUTE_PIN_MASK		0x08	//GPIO_C.3
 
 	
-#define PWR_PIN_MASK
-#define SYS_CTL_MASK
-
-#define ACC_DET_MASK
-#define ACC_IN_MASK	
 
 #define MUTE_AMP()
 #define UnMUTE_AMP()
 
-#define SYS_ON()
-#define POWER_ON()
+#define SYS_ON()		P0_4 = 1
+#define POWER_ON()		P0_5 = 1
 
-#define SYS_OFF()
-#define POWER_OFF()
+#define SYS_OFF()		P0_4 = 0
+#define POWER_OFF()		P0_5 = 1
+	
+#define Read_ACC_Pin	P0_3
 
-#define Read_ACC_Pin
 extern DWORD	DATA	gSysTick; 					//system tick counter
 
 

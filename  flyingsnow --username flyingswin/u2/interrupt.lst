@@ -1,4 +1,4 @@
-C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 11:43:11 PAGE 1   
+C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 17:31:02 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE INTERRUPT
@@ -62,7 +62,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =     60    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 11:43:11 PAGE 2   
+C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 17:31:02 PAGE 2   
 
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----

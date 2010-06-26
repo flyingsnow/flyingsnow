@@ -62,6 +62,7 @@ typedef char				BOOLEAN;
 typedef char				*PCHAR;
 typedef char				CHAR;
 typedef unsigned char		BYTE, UCHAR, *PUCHAR;
+typedef unsigned int		UINT;
 typedef unsigned short		USHORT, *PUSHORT;
 typedef unsigned short		WORD, *PWORD;
 typedef unsigned long		DWORD, ULONG, *PULONG;
