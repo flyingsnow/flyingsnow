@@ -8,15 +8,15 @@ SysTickInit(
 	void
 	)
 {
-//#warning	"Ivan: TIMER4 AS SYSTEM TICK!"
+#warning	"Ivan: TIMER4 AS SYSTEM TICK!"
 	gSysTick = 0xFFFFFFF0;
 	EA = 0;
 	INSCON |= 0x40; //select Bank1
 	// prescaler 1/8
 	T4PS0 = 1;
 	//1ms preloader value 
-	TL4 = 0x82;
-	TH4 = 0xFF;
+	TL4 = 0x88;
+	TH4 = 0xFE;
 	TR4 = 1;			//Enable TIM4
 	INSCON &= ~0x40;	//select Bank0
 	IEN1 |= 0x40;		//Enable tim4 interrupt 
