@@ -1,4 +1,4 @@
-C51 COMPILER V8.08   INTERRUPT                                                             06/25/2010 16:26:34 PAGE 1   
+C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 11:43:11 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE INTERRUPT
@@ -18,15 +18,16 @@ line level    source
    8                  void
    9                  )
   10          {
-  11   1      //#warning      "Ivan: TIMER4 AS SYSTEM TICK!"
+  11   1      #warning        "Ivan: TIMER4 AS SYSTEM TICK!"
+*** WARNING C320 IN LINE 11 OF ..\src\interrupt.c: "Ivan: TIMER4 AS SYSTEM TICK!"
   12   1              gSysTick = 0xFFFFFFF0;
   13   1              EA = 0;
   14   1              INSCON |= 0x40; //select Bank1
   15   1              // prescaler 1/8
   16   1              T4PS0 = 1;
   17   1              //1ms preloader value 
-  18   1              TL4 = 0x82;
-  19   1              TH4 = 0xFF;
+  18   1              TL4 = 0x88;
+  19   1              TH4 = 0xFE;
   20   1              TR4 = 1;                        //Enable TIM4
   21   1              INSCON &= ~0x40;        //select Bank0
   22   1              IEN1 |= 0x40;           //Enable tim4 interrupt 
@@ -58,16 +59,16 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     59    ----
+   CODE SIZE        =     60    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-C51 COMPILER V8.08   INTERRUPT                                                             06/25/2010 16:26:34 PAGE 2   
+C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 11:43:11 PAGE 2   
 
+   PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
