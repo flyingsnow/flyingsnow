@@ -3,6 +3,7 @@
 
 DWORD	DATA	gSysTick; 					//system tick counter
 TIMER 	sBlinkTimer;
+KEY_EVENT	gKeyCode = IN_KEY_NONE;
 
 VOID  InitGpio(VOID)
 {
@@ -26,12 +27,30 @@ main()
 	SysTickInit();
 	InitGpio();
 	InitAdc();
+	SYS_ON();
+	POWER_ON();
+	AdcKeyScanInit();
+	DisplayInit();
 	TimeOutSet(&sBlinkTimer,1000);
 	while(1) {
-		if(IsTimeOut(&sBlinkTimer)) {
-			Wait = AdcReadChannel(ADC_CHANNEL_1);
-			TimeOutSet(&sBlinkTimer,1000);
+#if 0		
+		DisplayMain();
+		gKeyCode = AdcKeyEventGet();
+		if(gKeyCode != IN_KEY_NONE) {
+			_nop_();
 		}
+#endif 
+	if(IsTimeOut(&sBlinkTimer))	{
+		Wait = AdcReadChannel(ADC_CHANNEL_2);
+		if(Wait < 600) {
+			DispBuff[6] = Num[(Wait/100)];
+			DispBuff[7] = Num[((Wait/10)%10)];
+			DispBuff[8] = Num[(Wait%10)];
+			DisplayMain();
+		}
+		TimeOutSet(&sBlinkTimer,1000);
+		}	
+
 	}
 	return 0;
 }

@@ -8,7 +8,7 @@ SysTickInit(
 	void
 	)
 {
-#warning	"Ivan: TIMER4 AS SYSTEM TICK!"
+//#warning	"Ivan: TIMER4 AS SYSTEM TICK!"
 	gSysTick = 0xFFFFFFF0;
 	EA = 0;
 	INSCON |= 0x40; //select Bank1

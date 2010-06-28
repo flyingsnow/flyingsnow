@@ -8,6 +8,8 @@ Group (system)
 File 1,1,<..\src\main.c><main.c> 0x0 
 File 1,1,<..\src\interrupt.c><interrupt.c> 0x0 
 File 1,1,<..\src\timer.c><timer.c> 0x0 
+File 1,1,<..\src\adc.c><adc.c> 0x0 
+File 1,1,<..\src\display.c><display.c> 0x0 
 
 
 Options 1,0,0  // Target 'SW-RADIO'
