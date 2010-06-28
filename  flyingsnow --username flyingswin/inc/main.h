@@ -8,6 +8,8 @@
 #include <sh79f166.h>
 #include "timer.h"
 #include "adc.h"
+#include "display.h"
+#include "adc_key.h"
 
 
 //
