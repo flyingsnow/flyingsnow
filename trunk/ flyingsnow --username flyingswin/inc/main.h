@@ -10,7 +10,7 @@
 #include "adc.h"
 #include "display.h"
 #include "adc_key.h"
-
+#include "si4730.h"
 
 //
 // Declare control port and pins. Oct 21,2009 by  He
@@ -30,6 +30,10 @@
 #define Read_ACC_Pin	P0_3
 
 extern DWORD	DATA	gSysTick; 					//system tick counter
+extern UCHAR 	t_sec;
+extern UCHAR 	t_min;
+extern UCHAR 	t_hour;
 
+void Delay(UINT DelayTime);
 
 #endif
