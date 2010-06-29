@@ -76,5 +76,18 @@ typedef signed int			SWORD;
 typedef signed long			SDWORD;
 
 
+#ifndef FALSE
+#define FALSE               0
+#endif
+
+#ifndef TRUE
+#define TRUE                1
+#endif
+
+#ifndef ERROR
+#define ERROR               0
+#endif
+
+
 #endif
 

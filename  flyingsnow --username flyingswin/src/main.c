@@ -2,6 +2,11 @@
 #include "interrupt.h"
 
 DWORD	DATA	gSysTick; 					//system tick counter
+
+UCHAR t_sec = 0;
+UCHAR t_min = 0;
+UCHAR t_hour = 0;					//clock 
+
 TIMER 	sBlinkTimer;
 KEY_EVENT	gKeyCode = IN_KEY_NONE;
 
@@ -32,6 +37,8 @@ main()
 	AdcKeyScanInit();
 	DisplayInit();
 	TimeOutSet(&sBlinkTimer,1000);
+	Si4730_Power_Up(FM_RECEIVER);
+	
 	while(1) {
 #if 0		
 		DisplayMain();
@@ -47,6 +54,7 @@ main()
 			DispBuff[7] = Num[((Wait/10)%10)];
 			DispBuff[8] = Num[(Wait%10)];
 			DisplayMain();
+			Si4730_Test();
 		}
 		TimeOutSet(&sBlinkTimer,1000);
 		}	
@@ -54,3 +62,11 @@ main()
 	}
 	return 0;
 }
+
+
+void Delay( UINT DelayTime )
+{
+	UINT i = DelayTime;
+	while( i-- );
+}
+
