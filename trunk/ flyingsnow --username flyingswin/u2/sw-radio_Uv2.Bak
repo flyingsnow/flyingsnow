@@ -13,6 +13,7 @@ File 1,1,<..\src\display.c><display.c> 0x0
 File 1,1,<..\src\adc_key.c><adc_key.c> 0x0 
 File 1,1,<..\src\si4730.c><si4730.c> 0x0 
 File 1,1,<..\src\i2c.c><i2c.c> 0x0 
+File 1,1,<..\src\audio.c><audio.c> 0x0 
 
 
 Options 1,0,0  // Target 'SW-RADIO'
@@ -58,7 +59,7 @@ Options 1,0,0  // Target 'SW-RADIO'
  CrunUsr 0 0 <>
  CrunUsr 1 0 <>
  SVCSID <>
- MODEL5=2
+ MODEL5=1
  RTOS5=0
  ROMSZ5=2
  DHOLD5=0
@@ -122,7 +123,7 @@ Options 1,0,0  // Target 'SW-RADIO'
  LX51DAS ()
  LX51IDS ()
   OPTDL (S8051.DLL)()(DP51.DLL)(-p51)(S8051.DLL)()(TP51.DLL)(-p51)
-  OPTDBG 48126,8,()()()()()()()()()() (BIN\SH51.DLL)()()()
+  OPTDBG 49150,8,()()()()()()()()()() (BIN\SH51.DLL)()()()
  FLASH1 { 1,0,0,0,1,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0 }
  FLASH2 (BIN\SH51.DLL)
  FLASH3 ("" ())

@@ -38,6 +38,35 @@ typedef enum ERROR_OP {
 //    ERROR = 4
 } T_ERROR_OP;
 
+typedef enum _BAND {
+	Band_MW1,
+	Band_MW2,
+	Band_FM1,
+	Band_FM2,
+	Band_FM3
+}BAND;
+/*----------------------------------------
+define for tuning step,frequency range,
+Seek level,ifcounter for all bands.
+-----------------------------------------*/
+#define FMTuneStep		10
+#define FMSeekStep		10
+#define FMmin			8750  //09-08-12 modify ..
+#define FMmax			10800
+
+
+#define MWTuneStep		9
+#define MWSeekStep		9
+#define MWmin			531
+#define MWmax			1602
+
+/*--------------------------------------------------
+define for initialization of frequency, band
+---------------------------------------------------*/
+#define FM_Threshold_Freq	FMmin
+#define Band_Default 		Band_FM1
+#define Frequency_Default	FM_Threshold_Freq
+#define MW_Threshold_Freq	MWmin
 
 /* Exported functions ------------------------------------------------------- */
 

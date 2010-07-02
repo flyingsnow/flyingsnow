@@ -4,477 +4,14 @@
 <h1>µVision3 Build Log</h1>
 <h2>Project:</h2>
 J:\workplace\SwRadio\u2\sw-radio.uv2
-Project File Date:  06/27/2010
+Project File Date:  07/02/2010
 
 <h2>Output:</h2>
 Build target 'SW-RADIO'
 compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-Program Size: data=96.0 xdata=68 code=2013
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 1 Warning(s).
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is ABB5H
-Code Write Done: 2013 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 2013 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(77): error C141: syntax error near '*', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'band', expected ')'
-\WORKPLACE\SWRADIO\INC\SI4730.H(99): error C141: syntax error near 'band', expected ')'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\SI4730.H(88): error C141: syntax error near 'freq', expected ')'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?RESETSI4730?SI4730
-Program Size: data=105.0 xdata=68 code=2040
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 2 Warning(s).
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-..\SRC\SI4730.C(16): error C202: 'rSDA_H': undefined identifier
-..\SRC\SI4730.C(17): error C202: 'rSCL_H': undefined identifier
-compiling i2c.c...
-..\INC\I2C.H(24): error C129: missing ';' before 'I2C1_write'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\INC\I2C.H(24): error C129: missing ';' before 'I2C1_write'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(81): error C141: syntax error near '0', expected '<id>'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\INC\I2C.H(23): error C129: missing ';' before 'I2C1_write'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C231: 'BOOL': redefinition
-..\INC\I2C.H(23): error C129: missing ';' before 'I2C1_write'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(78): error C141: syntax error near '0', expected '<id>'
-..\INC\I2C.H(23): error C129: missing ';' before 'I2C1_write'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(55): warning C206: 'nop': missing function-prototype
-..\SRC\I2C.C(184): error C202: 'u8': undefined identifier
-..\SRC\I2C.C(184): error C141: syntax error near 'i'
-..\SRC\I2C.C(185): error C202: 'i': undefined identifier
-..\SRC\I2C.C(203): error C202: 'u8': undefined identifier
-..\SRC\I2C.C(203): error C141: syntax error near 'i'
-..\SRC\I2C.C(204): error C202: 'i': undefined identifier
-..\SRC\I2C.C(226): error C129: missing ';' before 'I2C1_RxByte'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(393): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?RESETSI4730?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_READ?I2C
-*** ERROR L107: ADDRESS SPACE OVERFLOW
-    SPACE:   DATA    
-    SEGMENT: ?DT?_I2C2_TXBYTE?I2C
-    LENGTH:  0002H
-*** ERROR L107: ADDRESS SPACE OVERFLOW
-    SPACE:   DATA    
-    SEGMENT: ?DT?I2C1_RXBYTE?I2C
-    LENGTH:  0002H
-*** ERROR L107: ADDRESS SPACE OVERFLOW
-    SPACE:   DATA    
-    SEGMENT: ?DT?I2C2_RXBYTE?I2C
-    LENGTH:  0002H
-*** ERROR L107: ADDRESS SPACE OVERFLOW
-    SPACE:   DATA    
-    SEGMENT: ?DT?_I2C_DELAY?I2C
-    LENGTH:  0001H
-Program Size: data=136.0 xdata=68 code=2799
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(393): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?RESETSI4730?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_READ?I2C
-Program Size: data=13.0 xdata=191 code=3129
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?RESETSI4730?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C2_READ?I2C
-Program Size: data=13.0 xdata=191 code=3159
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
-Build target 'SW-RADIO'
-compiling main.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling interrupt.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling timer.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling adc.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling display.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling adc_key.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling si4730.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-compiling i2c.c...
-\WORKPLACE\SWRADIO\INC\TYPE.H(89): error C141: syntax error near '0', expected '<id>'
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-..\SRC\SI4730.C(43): warning C206: 'I2C2_read': missing function-prototype
-..\SRC\SI4730.C(43): error C267: 'I2C2_read': requires ANSI-style prototype
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-Target not created
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_TEST?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SI4730_POWER_UP?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=205 code=3688
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 9 Warning(s).
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -482,124 +19,113 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=193 code=3707
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=143 code=3777
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 8 Warning(s).
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is A59CH
-Code Write Done: 3710 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 3710 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
-Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
-Flash Erase Done.
-The Code CheckSum is A59CH
-Code Write Done: 3710 bytes programmed.
-Code Option Write Done.
-Code Verify Done: 3710 bytes verified.
-Code Option Verify Done
-Code Security Write Done.
-Code Security Verify Done
+"SwRadio" - 0 Error(s), 5 Warning(s).
 Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=189 code=3710
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=143 code=3777
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Flash Erase Done.
-The Code CheckSum is A2F3H
-Code Write Done: 3713 bytes programmed.
+The Code CheckSum is A270H
+Code Write Done: 3778 bytes programmed.
 Code Option Write Done.
-Code Verify Done: 3713 bytes verified.
+Code Verify Done: 3778 bytes verified.
 Code Option Verify Done
 Code Security Write Done.
 Code Security Verify Done
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-..\SRC\INTERRUPT.C(39): error C132: 'interrput': not in formal parameter list
-..\SRC\INTERRUPT.C(39): error C141: syntax error near '11'
-..\SRC\INTERRUPT.C(41): error C132: 't_sec': not in formal parameter list
-..\SRC\INTERRUPT.C(44): error C244: 't_sec': can't initialize, bad type or class
-..\SRC\INTERRUPT.C(44): error C132: 't_sec': not in formal parameter list
-..\SRC\INTERRUPT.C(45): error C132: 't_min': not in formal parameter list
-..\SRC\INTERRUPT.C(45): error C141: syntax error near '++'
-..\SRC\INTERRUPT.C(48): error C244: 't_min': can't initialize, bad type or class
-..\SRC\INTERRUPT.C(48): error C132: 't_min': not in formal parameter list
-..\SRC\INTERRUPT.C(49): error C132: 't_hour': not in formal parameter list
-..\SRC\INTERRUPT.C(49): error C141: syntax error near '++'
-..\SRC\INTERRUPT.C(52): error C244: 't_hour': can't initialize, bad type or class
-..\SRC\INTERRUPT.C(52): error C132: 't_hour': not in formal parameter list
-..\SRC\INTERRUPT.C(53): error C141: syntax error near '}'
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-Target not created
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TIMER3?INTERRUPT
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3752
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=143 code=3777
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 8 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
 Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Flash Erase Done.
-The Code CheckSum is C469H
-Code Write Done: 3755 bytes programmed.
+The Code CheckSum is A270H
+Code Write Done: 3778 bytes programmed.
 Code Option Write Done.
-Code Verify Done: 3755 bytes verified.
+Code Verify Done: 3778 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+USB Communication error.
+USB Communication error.
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3822
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is B6E5H
+Code Write Done: 3823 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3823 bytes verified.
 Code Option Verify Done
 Code Security Write Done.
 Code Security Verify Done
@@ -607,36 +133,32 @@ Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TIMER3?INTERRUPT
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3752
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3834
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 8 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
 Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Flash Erase Done.
-The Code CheckSum is C48DH
-Code Write Done: 3755 bytes programmed.
+The Code CheckSum is BE5BH
+Code Write Done: 3835 bytes programmed.
 Code Option Write Done.
-Code Verify Done: 3755 bytes verified.
+Code Verify Done: 3835 bytes verified.
 Code Option Verify Done
 Code Security Write Done.
 Code Security Verify Done
@@ -644,64 +166,32 @@ Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TIMER3?INTERRUPT
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3752
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3822
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 8 Warning(s).
-Build target 'SW-RADIO'
-compiling main.c...
-compiling interrupt.c...
-compiling timer.c...
-compiling adc.c...
-compiling display.c...
-compiling adc_key.c...
-compiling si4730.c...
-compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?TIMER3?INTERRUPT
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3764
-creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 8 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
 Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Flash Erase Done.
-The Code CheckSum is CAEBH
-Code Write Done: 3767 bytes programmed.
+The Code CheckSum is B457H
+Code Write Done: 3823 bytes programmed.
 Code Option Write Done.
-Code Verify Done: 3767 bytes verified.
+Code Verify Done: 3823 bytes verified.
 Code Option Verify Done
 Code Security Write Done.
 Code Security Verify Done
@@ -709,34 +199,32 @@ Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3783
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
 Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
 Flash Erase Done.
-The Code CheckSum is D9E3H
-Code Write Done: 3783 bytes programmed.
+The Code CheckSum is BB44H
+Code Write Done: 3831 bytes programmed.
 Code Option Write Done.
-Code Verify Done: 3783 bytes verified.
+Code Verify Done: 3831 bytes verified.
 Code Option Verify Done
 Code Security Write Done.
 Code Security Verify Done
@@ -744,96 +232,649 @@ Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3783
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3839
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C58AH
+Code Write Done: 3840 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3840 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C58AH
+Code Write Done: 3840 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3840 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
 Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3783
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C11CH
+Code Write Done: 3831 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3831 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
 Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3783
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
 creating hex file from "SwRadio"...
 "SwRadio" - 0 Error(s), 6 Warning(s).
 Build target 'SW-RADIO'
 compiling main.c...
 compiling interrupt.c...
 compiling timer.c...
-compiling adc.c...
 compiling display.c...
 compiling adc_key.c...
 compiling si4730.c...
 compiling i2c.c...
-..\SRC\I2C.C(403): warning C280: 'delay_time': unreferenced local variable
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
 linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ADCKEYEVENTGET?ADC_KEY
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SI4730_WAIT_STC?SI4730
+    SEGMENT: ?PR?SI4730_TEST?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_WRITE?I2C
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_I2C1_READ?I2C
-Program Size: data=13.0 xdata=192 code=3783
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
 creating hex file from "SwRadio"...
-"SwRadio" - 0 Error(s), 7 Warning(s).
-Clean started: Project: 'sw-radio'
-   deleting intermediate output files for target 'SW-RADIO'
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C127H
+Code Write Done: 3831 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3831 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+USB Communication error.
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C127H
+Code Write Done: 3831 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3831 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_WRITE_LCD?DISPLAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3830
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 6 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is C11DH
+Code Write Done: 3831 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3831 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3922
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3922
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is CCA1H
+Code Write Done: 3923 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3923 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3922
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is CB45H
+Code Write Done: 3923 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3923 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4128
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4128
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is 63A4H
+Code Write Done: 4129 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 4129 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4128
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Build target 'SW-RADIO'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4064
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 4 Warning(s).
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4064
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is 2E71H
+Code Write Done: 4065 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 4065 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=4062
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is 2E63H
+Code Write Done: 4063 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 4063 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling display.c...
+compiling adc_key.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3916
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 4 Warning(s).
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3916
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is CB28H
+Code Write Done: 3917 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3917 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3930
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is D0D6H
+Code Write Done: 3931 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3931 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done
+Build target 'SW-RADIO'
+compiling main.c...
+compiling interrupt.c...
+compiling timer.c...
+compiling display.c...
+compiling adc_key.c...
+compiling si4730.c...
+compiling i2c.c...
+..\SRC\I2C.C(412): warning C280: 'delay_time': unreferenced local variable
+compiling audio.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_TEST?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SI4730_POWER_DOWN?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_SET_PROPERTY?SI4730
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SI4730_RSQ_STATUS?SI4730
+Program Size: data=42.0 xdata=84 code=3932
+creating hex file from "SwRadio"...
+"SwRadio" - 0 Error(s), 5 Warning(s).
+Load "J:\\workplace\\SwRadio\\u2\\SwRadio" 
+Flash Erase Done.
+The Code CheckSum is D1BAH
+Code Write Done: 3933 bytes programmed.
+Code Option Write Done.
+Code Verify Done: 3933 bytes verified.
+Code Option Verify Done
+Code Security Write Done.
+Code Security Verify Done

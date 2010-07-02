@@ -244,7 +244,7 @@ T_ERROR_OP Si4730_Set_Property(UCHAR *Si4730_set_property)
 }
 
 
-#if 0
+#if 1
 
 
 T_ERROR_OP Si4730_Tune_Freq(UCHAR band,UINT freq)
@@ -286,8 +286,8 @@ T_ERROR_OP Si4730_Tune_Freq(UCHAR band,UINT freq)
 	}
 
 	//save the frequency infomation 
-	SaveBand = band;
-	SaveFrequency = freq; 
+//	SaveBand = band;
+//	SaveFrequency = freq; 
 	
 	Si4730_tune_freq[3] = (freq&0x00ff);
 	Si4730_tune_freq[2] = (freq&0xff00) >> 8;

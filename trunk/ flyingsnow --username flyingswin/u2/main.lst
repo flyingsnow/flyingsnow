@@ -1,9 +1,9 @@
-C51 COMPILER V8.08   MAIN                                                                  06/26/2010 17:31:02 PAGE 1   
+C51 COMPILER V8.08   MAIN                                                                  07/03/2010 00:56:11 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\main.obj
-COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\main.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\main
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\main.c COMPACT BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\main
                     -.lst) OBJECT(.\main.obj)
 
 line level    source
@@ -12,47 +12,101 @@ line level    source
    2          #include "interrupt.h"
    3          
    4          DWORD   DATA    gSysTick;                                       //system tick counter
-   5          TIMER   sBlinkTimer;
-   6          
-   7          VOID  InitGpio(VOID)
-   8          {
-   9   1              P0CR |= 0x30; //P0.4 P0.5 output  
-  10   1              P3CR |= 0xE0; //P3.5 .6 .7 output
-  11   1              P4CR |= 0x18; //p4.3 .4 output
-  12   1              
-  13   1      }
-  14          
-  15          
-  16          
-  17          main()
-  18          {
-  19   1              UINT Wait = 0x80;
-  20   1              EA = 0;
-  21   1              CLKCON = 0xC8;
-  22   1              while(Wait--){
-  23   2                      _nop_();
-  24   2              }
-  25   1              CLKCON |= 0x04;
-  26   1              SysTickInit();
-  27   1              InitGpio();
-  28   1              InitAdc();
-  29   1              TimeOutSet(&sBlinkTimer,1000);
-  30   1              while(1) {
-  31   2                      if(IsTimeOut(&sBlinkTimer)) {
-  32   3                              Wait = AdcReadChannel(ADC_CHANNEL_1);
-  33   3                              TimeOutSet(&sBlinkTimer,1000);
-  34   3                      }
-  35   2              }
-  36   1              return 0;
-  37   1      }
+   5          
+   6          UCHAR t_sec = 0;
+   7          UCHAR t_min = 0;
+   8          UCHAR t_hour = 0;                                       //clock 
+   9          
+  10          TIMER   DATA sBlinkTimer;
+  11          KEY_EVENT       gKeyCode = IN_KEY_NONE;
+  12          
+  13          VOID  InitGpio(VOID)
+  14          {
+  15   1              P0CR |= 0x30; //P0.4 P0.5 output  
+  16   1              P3CR |= 0xF0; //P3_4.5 .6 .7 output
+  17   1              P4CR |= 0x18; //p4.3 .4 output
+  18   1              
+  19   1      }
+  20          
+  21          
+  22          
+  23          main()
+  24          {
+  25   1              UCHAR Wait = 0x80;
+  26   1              EA = 0;
+  27   1              CLKCON = 0xC8;
+  28   1              while(Wait--){
+  29   2                      _nop_();
+  30   2              }
+  31   1              CLKCON |= 0x04;
+  32   1              SysTickInit();
+  33   1              InitGpio();
+  34   1              InitAdc();
+  35   1              SYS_ON();
+  36   1              POWER_ON();
+  37   1              AdcKeyScanInit();
+  38   1              DisplayInit();
+  39   1              DisplayInit();
+  40   1              Si4730_Power_Up(FM_RECEIVER);
+  41   1              Si4730_Tune_Freq(Band_FM1,9240);
+  42   1              Delay(0xffff);
+  43   1              SC7313_initial(Channel_Radio);  
+  44   1              TimeOutSet(&sBlinkTimer,1000);
+  45   1              UnMUTE_AMP();
+  46   1              Wait = 0;
+  47   1              while(1) {
+  48   2      #if 0           
+                              DisplayMain();
+                              gKeyCode = AdcKeyEventGet();
+                              if(gKeyCode != IN_KEY_NONE) {
+                                      _nop_();
+                              }
+              #endif 
+C51 COMPILER V8.08   MAIN                                                                  07/03/2010 00:56:11 PAGE 2   
+
+  55   2              gKeyCode = AdcKeyEventGet();
+  56   2              if(gKeyCode != IN_KEY_NONE){
+  57   3                      SC7313_initial(Channel_Radio);  
+  58   3                      Si4730_Tune_Freq(Band_FM1,8950);
+  59   3      //              P0_5 = ~P0_5;
+  60   3                      DispBuff[6] = Num[(gKeyCode/100)];
+  61   3                      DispBuff[7] = Num[((gKeyCode/10)%10)];
+  62   3                      DispBuff[8] = Num[(gKeyCode%10)];
+  63   3                      DisplayMain();
+  64   3              }
+  65   2              if(IsTimeOut(&sBlinkTimer))     {
+  66   3              //      Wait = AdcReadChannel(ADC_CHANNEL_2);
+  67   3              //      Wait = AdcKeyEventGet();
+  68   3              //      if(Wait!= IN_KEY_NONE) {
+  69   3              //              DispBuff[6] = Num[(Wait/100)];
+  70   3              //              DispBuff[7] = Num[((Wait/10)%10)];
+  71   3      ////                    DispBuff[8] = Num[(t_sec%10)];
+  72   3      //                      DisplayMain();
+  73   3      //                      Si4730_Test();
+  74   3              //      }
+  75   3              //      P0_5 = ~P0_5;
+  76   3                      TimeOutSet(&sBlinkTimer,1000);
+  77   3                      }       
+  78   2      
+  79   2              }
+  80   1              return 0;
+  81   1      }
+  82          
+  83          
+  84          void Delay( UINT DelayTime )
+  85          {
+  86   1              UINT i = DelayTime;
+  87   1              while( i-- );
+  88   1      }
+  89          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     91    ----
+   CODE SIZE        =    240    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =     13       2
+   PDATA SIZE       =      4       1
+   DATA SIZE        =     13    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

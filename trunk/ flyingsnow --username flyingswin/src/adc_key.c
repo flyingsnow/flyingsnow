@@ -13,7 +13,7 @@
 #define 	ADC_KEY_CP_TIME			1000
 
 #define 	ADC_KEY_RANGE			30
-#define		ADC_KEY_COUNT			10
+#define		ADC_KEY_COUNT			8
 #define		ADC_KEY_FULL_VAL		1024
 
 
@@ -24,10 +24,11 @@
 **********************************************************
 */
 
-TIMER			AdcKeyWaitTimer;
-TIMER			AdcKeyScanTimer;
+TIMER	DATA		AdcKeyWaitTimer;
+TIMER	DATA		AdcKeyScanTimer;
 ADC_KEY_STATE	AdcKeyState;
 
+UINT DATA PreKeyIndex = 0;
 
 
 /*
@@ -35,7 +36,7 @@ ADC_KEY_STATE	AdcKeyState;
 *					LOCAL TABLE
 **********************************************************
 */
-static const BYTE XDATA AdcKeyEvent[][4] = 
+BYTE CODE AdcKeyEvent[][4] = 
 {
 	{IN_KEY_NONE,			IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	//NO KEY
 	
@@ -77,24 +78,51 @@ AdcChannelKeyGet(
 	BYTE Channel
 	)							
 {
-	WORD 	KeyValueTable[] = {600,570,500,420,330,250,160,80,0};
+	WORD  CODE	KeyValueTable[] = {780,650,550,450,350,250,150,50,0};
 	UINT    Val;
 	BYTE	KeyIndex,i;
+
+#if 1
+//		UINT  temph;
+		UCHAR templ;
+		UCHAR wait_conuter;
+		
+		ADCON |= 0x80;		//enable adc
 	
+		ADCON &= 0xF1;					//clear channel 	
+		ADCON |= Channel << 1;		//set channel 
+		ADCON |= 0x01;					//start AD convert. 
+	
+		/* Waiting for AD convert finished	  */
+		while((ADCON & 0x01)&& wait_conuter < 0x80) //loop_counter limit should guarantee at least 10us
+			wait_conuter++; 
+	
+	//	while(templ--)
+	//		;
+		
+		Val = ADDH;		//Read MSB
+		templ = ADDL;		//Read LSB
+	
+		Val = Val << 2;
+	
+		Val = (UINT)Val|templ;
+#else 
+
 	Val = AdcReadChannel(Channel);	
-
+#endif
 
 	
-	if (Val >= 600)	{
+	if (Val >= 800)	{
 		KeyIndex = IN_KEY_NONE;	
 		return KeyIndex;
 	}
+
 		
 	for(i = 0; i <= 9; i++) {
 		if(Val >= KeyValueTable[i] )
 			break;
 	}
-	if( i > 9 ) 
+	if( i >= 9 ) 
 			KeyIndex = IN_KEY_NONE;
 		else
 			KeyIndex = i;   	
@@ -107,7 +135,7 @@ AdcChannelKeyGet(
 //		DBG(("KeyIndex:%4d\n", (WORD)KeyIndex));
 //		DBG(("*************************\n"));
 //	}
-	
+	DispBuff[4] = Num[KeyIndex];
 	return KeyIndex;
 }
 
@@ -117,6 +145,13 @@ AdcChannelKeyGet(
 *					GLOBAL FUNCTION
 **********************************************************
 */
+VOID InitAdc(VOID)
+{
+	ADCH = 0x06;		//enable channle 1,2
+	ADCON |= 0x80;		//enable adc
+	ADT = 0x27; 		//Tad = 4* Tsys 
+}
+
 //
 // Initialize hardware key scan (GPIO) operation.
 //
@@ -134,7 +169,7 @@ AdcKeyScanInit(VOID)
 KEY_EVENT
 AdcKeyEventGet(VOID)							
 {
-	static 	WORD 	PreKeyIndex = 0;
+//	static 	 UINT DATA PreKeyIndex = 0;
 	BYTE			KeyIndex;
 	KEY_EVENT		event = IN_KEY_NONE;
 

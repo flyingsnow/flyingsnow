@@ -7,19 +7,19 @@
 #include <INTRINS.H>
 #include <sh79f166.h>
 #include "timer.h"
-#include "adc.h"
+//#include "adc.h"
 #include "display.h"
 #include "adc_key.h"
 #include "si4730.h"
-
+#include "audio.h"
 //
 // Declare control port and pins. Oct 21,2009 by  He
 #define MUTE_PIN_MASK		0x08	//GPIO_C.3
 
 	
 
-#define MUTE_AMP()
-#define UnMUTE_AMP()
+#define MUTE_AMP()			P3_4 = 0
+#define UnMUTE_AMP()		P3_4 = 1
 
 #define SYS_ON()		P0_4 = 1
 #define POWER_ON()		P0_5 = 1
