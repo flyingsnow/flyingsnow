@@ -1,7 +1,7 @@
 #include "main.h"
-
+#include "string.h"
 UCHAR DispRefresh;
-UCHAR Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
+UCHAR XDATA Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
 UCHAR DispBuff[12];
 
 
@@ -94,8 +94,10 @@ VOID DisplayInit()
     SendCmd(SYSTEM);
 	SendCmd(LCDON);
 	//for test 
-	for(i = 8;i <20 ;i++)
+	for(i = 8;i <32 ;i++)
 		Write_LCD(i,0x0);
+	//	DispBuff[i] = 0x00;
+	memset(DispBuff,0x00,12);
 }
 
 

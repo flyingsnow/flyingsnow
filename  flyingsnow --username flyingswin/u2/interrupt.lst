@@ -1,9 +1,9 @@
-C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 17:31:02 PAGE 1   
+C51 COMPILER V8.08   INTERRUPT                                                             07/03/2010 00:56:11 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE INTERRUPT
 OBJECT MODULE PLACED IN .\interrupt.obj
-COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\interrupt.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\interrupt.c COMPACT BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.
                     -\interrupt.lst) OBJECT(.\interrupt.obj)
 
 line level    source
@@ -18,52 +18,81 @@ line level    source
    8                  void
    9                  )
   10          {
-  11   1      #warning        "Ivan: TIMER4 AS SYSTEM TICK!"
-*** WARNING C320 IN LINE 11 OF ..\src\interrupt.c: "Ivan: TIMER4 AS SYSTEM TICK!"
+  11   1      //#warning      "Ivan: TIMER4 AS SYSTEM TICK!"
   12   1              gSysTick = 0xFFFFFFF0;
   13   1              EA = 0;
   14   1              INSCON |= 0x40; //select Bank1
-  15   1              // prescaler 1/8
-  16   1              T4PS0 = 1;
-  17   1              //1ms preloader value 
-  18   1              TL4 = 0x88;
-  19   1              TH4 = 0xFE;
-  20   1              TR4 = 1;                        //Enable TIM4
-  21   1              INSCON &= ~0x40;        //select Bank0
-  22   1              IEN1 |= 0x40;           //Enable tim4 interrupt 
-  23   1              EA = 1;                         //enable global interrupt control bit                                                                   
-  24   1      }
-  25          
-  26          
-  27          
-  28          
-  29          //
-  30          // TIMER/COUNTER 4 interrupt service function.
-  31          //
-  32          void
-  33          Timer4(void)                    interrupt 13                                            
-  34          {
-  35   1      
-  36   1              if(!++(*((BYTE*)(&gSysTick) + 3)))    
-  37   1              {
-  38   2                      if(!++(*((BYTE*)(&gSysTick) + 2)))
-  39   2                      {
-  40   3                              if(!++(*((BYTE*)(&gSysTick) + 1)))
-  41   3                              {
-  42   4                              (*((BYTE*)(&gSysTick) + 0))++;
-  43   4                              }
-  44   3                      }
-  45   2              }
-  46   1      
-  47   1      }
+  15   1      
+  16   1              //setup TIM4 as 1ms time base 
+  17   1              // prescaler 1/8
+  18   1              T4PS0 = 1;
+  19   1              //1ms preloader value 
+  20   1              TL4 = 0x88;
+  21   1              TH4 = 0xFE;
+  22   1              TR4 = 1;                        //Enable TIM4
+  23   1      
+  24   1              //setup Tim3 ,1s clock driver
+  25   1              T3CON = 0x02;
+  26   1              TR3 = 1;
+  27   1              
+  28   1              INSCON &= ~0x40;        //select Bank0
+  29   1              IEN1 |= 0x50;           //Enable tim4 and Tim3 interrupt 
+  30   1              EA = 1;                         //enable global interrupt control bit                                                                   
+  31   1      }
+  32          
+  33          
+  34          
+  35          
+  36          
+  37          void
+  38          Timer3(void)                            interrupt 11
+  39          {
+  40   1              t_sec++;                              /* Increment second counter */
+  41   1              if(t_sec == 60)               /* 1 min is completed*/
+  42   1              {
+  43   2                      t_sec = 0;                /* Clear second counter */
+  44   2                      t_min++;                  /* Increment minute counter */
+  45   2                      if(t_min == 60)           /* 1 hour is completed */
+  46   2                      {
+  47   3                              t_min = 0;            /* Clear minute counter */
+  48   3                              t_hour++;             /* Increment hour counter */
+  49   3                              if(t_hour == 24)      /* 1 day is completed */
+  50   3                              {
+  51   4                                      t_hour = 0;       /* Clear hour counter */
+  52   4                              }
+  53   3                      }
+  54   2              }           
+C51 COMPILER V8.08   INTERRUPT                                                             07/03/2010 00:56:11 PAGE 2   
+
+  55   1      
+  56   1      }
+  57          
+  58          
+  59          //
+  60          // TIMER/COUNTER 4 interrupt service function.
+  61          //
+  62          void
+  63          Timer4(void)                    interrupt 13                                            
+  64          {
+  65   1      
+  66   1              if(!++(*((BYTE*)(&gSysTick) + 3)))    
+  67   1              {
+  68   2                      if(!++(*((BYTE*)(&gSysTick) + 2)))
+  69   2                      {
+  70   3                              if(!++(*((BYTE*)(&gSysTick) + 1)))
+  71   3                              {
+  72   4                              (*((BYTE*)(&gSysTick) + 0))++;
+  73   4                              }
+  74   3                      }
+  75   2              }
+  76   1      
+  77   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     60    ----
+   CODE SIZE        =    114    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V8.08   INTERRUPT                                                             06/26/2010 17:31:02 PAGE 2   
-
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
@@ -71,4 +100,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

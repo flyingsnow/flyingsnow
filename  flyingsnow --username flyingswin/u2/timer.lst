@@ -1,9 +1,9 @@
-C51 COMPILER V8.08   TIMER                                                                 06/26/2010 17:31:03 PAGE 1   
+C51 COMPILER V8.08   TIMER                                                                 07/03/2010 00:56:12 PAGE 1   
 
 
 C51 COMPILER V8.08, COMPILATION OF MODULE TIMER
 OBJECT MODULE PLACED IN .\timer.obj
-COMPILER INVOKED BY: D:\Toolset\Keil\C51\BIN\C51.EXE ..\src\timer.c BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\tim
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\timer.c COMPACT BROWSE INCDIR(..\inc) DEBUG OBJECTEXTEND PRINT(.\tim
                     -er.lst) OBJECT(.\timer.obj)
 
 line level    source
@@ -54,16 +54,16 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    152    ----
+   CODE SIZE        =    172    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       7
+   PDATA SIZE       =   ----       7
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
-C51 COMPILER V8.08   TIMER                                                                 06/26/2010 17:31:03 PAGE 2   
+C51 COMPILER V8.08   TIMER                                                                 07/03/2010 00:56:12 PAGE 2   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

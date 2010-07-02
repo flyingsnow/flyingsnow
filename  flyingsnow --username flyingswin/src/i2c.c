@@ -103,7 +103,7 @@ BOOL I2C2_WaitAck(void)
 	I2C_delay(1);
 	SDA2_H;			
 	I2C_delay(1);
-	P4CR &= 0xEF;	//set p3_6 as input 
+	P4CR &= 0xEF;	//set p4_4 as input 
 	SCL2_H;
 	I2C_delay(1);
 	if(SDA2_read)
@@ -117,6 +117,7 @@ BOOL I2C2_WaitAck(void)
 	return TRUE;
 }
 
+#if 0
 /*
 send a ACK signal to slave device,used when master read data from slave
 return value: None
@@ -133,6 +134,7 @@ void I2C1_Ack(void)
 	SCL1_L;
 	I2C_delay(1);
 }
+#endif 
 
 void I2C2_Ack(void)
 {	
@@ -146,6 +148,7 @@ void I2C2_Ack(void)
 	I2C_delay(1);
 }
 
+#if 0
 /**
 send a nACK signal to slave device,used when master read data from slave
 return value: None
@@ -164,6 +167,7 @@ void I2C1_nAck(void)
 	I2C_delay(1);
 
 }
+#endif 
 
 void I2C2_nAck(void)
 {
@@ -223,6 +227,7 @@ void I2C2_TxByte(char i2c_data)
 	SCL2_L;
 }
 
+#if 0
 /**
   Read one byte data from slave device
   return value: the UCHAR type data from slave deivce
@@ -254,6 +259,7 @@ UCHAR I2C1_RxByte(void)
 	
 	
 }
+#endif 
 
 UCHAR I2C2_RxByte(void)
 {
@@ -333,6 +339,8 @@ BOOL I2C2_write(UCHAR i2c_adr,UCHAR * buffer, UCHAR NumtoWrite)
 
 }
 
+#if 0
+
 /**
   read data from slave device
   return value: BOOL,
@@ -368,6 +376,7 @@ BOOL I2C1_read(UCHAR i2c_adr,UCHAR * buffer,UCHAR NumtoRead)
 	return TRUE;
 
 }
+#endif 
 
 BOOL I2C2_read(UCHAR i2c_adr,UCHAR * buffer,UCHAR NumtoRead)
 {
