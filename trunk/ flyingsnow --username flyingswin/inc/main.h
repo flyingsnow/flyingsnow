@@ -7,7 +7,7 @@
 #include <INTRINS.H>
 #include <sh79f166.h>
 #include "timer.h"
-//#include "adc.h"
+#include "tuner.h"
 #include "display.h"
 #include "adc_key.h"
 #include "si4730.h"
@@ -34,6 +34,25 @@ extern UCHAR 	t_sec;
 extern UCHAR 	t_min;
 extern UCHAR 	t_hour;
 
-void Delay(UINT DelayTime);
+
+//
+// MCU Wait Ms.
+//
+extern void
+WaitMs(								
+	ULONG	ms										//Wait ms counter value
+	);	
+
+
+
+
+//
+// MCU Wait Us.
+//
+extern void
+WaitUs(											
+	ULONG	us										//Wait us counter value
+	);	
+
 
 #endif

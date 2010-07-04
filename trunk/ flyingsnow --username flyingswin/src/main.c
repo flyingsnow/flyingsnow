@@ -7,6 +7,8 @@ UCHAR t_sec = 0;
 UCHAR t_min = 0;
 UCHAR t_hour = 0;					//clock 
 
+bit direction,ast,singlestep;
+bit DispRefresh;
 TIMER 	DATA sBlinkTimer;
 KEY_EVENT	gKeyCode = IN_KEY_NONE;
 
@@ -32,58 +34,102 @@ main()
 	SysTickInit();
 	InitGpio();
 	InitAdc();
+	EA = 1;
+	
 	SYS_ON();
 	POWER_ON();
+	WaitMs(300);
+	SC7313_initial(Channel_Radio);	
 	AdcKeyScanInit();
 	DisplayInit();
-	DisplayInit();
-	Si4730_Power_Up(FM_RECEIVER);
-	Si4730_Tune_Freq(Band_FM1,9240);
-	Delay(0xffff);
-	SC7313_initial(Channel_Radio);	
+	Tuner_Init(SaveBand,SaveFreq);
 	TimeOutSet(&sBlinkTimer,1000);
 	UnMUTE_AMP();
 	Wait = 0;
 	while(1) {
-#if 0		
-		DisplayMain();
 		gKeyCode = AdcKeyEventGet();
-		if(gKeyCode != IN_KEY_NONE) {
-			_nop_();
+		
+		if(gKeyCode != IN_KEY_NONE){
+			switch(gKeyCode) {
+			case IN_KEY_NEXT_SP:
+				direction = 1;
+				ast = 0;
+				singlestep = 0;
+				status = Status_Seek;
+
+				break;
+
+			case IN_KEY_PRE_SP:
+				direction = 0;
+				ast = 0;
+				singlestep = 0;
+				status = Status_Seek;
+			
+				break;
+
+			case IN_KEY_NEXT_CP:				
+				direction = 1;
+				ast = 0;
+				singlestep = 1;
+				status = Status_Single;
+
+				break;
+
+			case IN_KEY_NEXT_CPR:				
+				status = Status_Idle;
+				break;
+			
+			}
 		}
-#endif 
-	gKeyCode = AdcKeyEventGet();
-	if(gKeyCode != IN_KEY_NONE){
-		SC7313_initial(Channel_Radio);	
-		Si4730_Tune_Freq(Band_FM1,8950);
-//		P0_5 = ~P0_5;
-		DispBuff[6] = Num[(gKeyCode/100)];
-		DispBuff[7] = Num[((gKeyCode/10)%10)];
-		DispBuff[8] = Num[(gKeyCode%10)];
-		DisplayMain();
-	}
-	if(IsTimeOut(&sBlinkTimer))	{
-	//	Wait = AdcReadChannel(ADC_CHANNEL_2);
-	//	Wait = AdcKeyEventGet();
-	//	if(Wait!= IN_KEY_NONE) {
-	//		DispBuff[6] = Num[(Wait/100)];
-	//		DispBuff[7] = Num[((Wait/10)%10)];
-////			DispBuff[8] = Num[(t_sec%10)];
-//			DisplayMain();
-//			Si4730_Test();
-	//	}
-	//	P0_5 = ~P0_5;
-		TimeOutSet(&sBlinkTimer,1000);
-		}	
+		if(status != Status_Idle) {
+			Tuner_Seek(direction, 0,0);
+			DispRefresh = 1;
+			
+		}
+		if(IsTimeOut(&sBlinkTimer) || DispRefresh == 1)	{	
+			
+				DisplayMain();	
+				DispRefresh = 0;
+			TimeOutSet(&sBlinkTimer,500);
+			}	
 
 	}
 	return 0;
 }
 
 
-void Delay( UINT DelayTime )
+//
+// MCU Wait Ms.
+//
+void
+WaitMs(											
+	ULONG ms										//Wait ms counter value
+	)	
 {
-	UINT i = DelayTime;
-	while( i-- );
+	TIMER	Delay;
+
+	TimeOutSet(&Delay, ms); 
+	while (!IsTimeOut(&Delay))
+	{
+	// 	FeedWatchDog();
+	//	KeyEventGet();
+						;
+	}
+}
+
+
+
+//
+// MCU Wait Us.
+//
+void
+WaitUs(											
+	ULONG us										//Wait us counter value
+	)	
+{
+	while (us)
+	{
+		us--;
+	}
 }
 

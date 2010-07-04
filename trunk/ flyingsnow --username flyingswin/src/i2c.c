@@ -12,7 +12,7 @@ Modified
 ***************************************************************************/ 
 #include "i2c.h"
 
-
+#define DELAY5US	_nop_();_nop_();_nop_();_nop_();_nop_(); //need adjust with Fsys
 
 
 
@@ -27,19 +27,19 @@ void I2C1_Start(void)
 {
 	SDA1_H;
 	SCL1_H;
-	I2C_delay(1);
+	DELAY5US;
 	SDA1_L;
-	I2C_delay(1);
-  SCL1_L;				
+	DELAY5US;
+  	SCL1_L;				
 }
 
 void I2C2_Start(void)
 {
 	SDA2_H;
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	SDA2_L;
-	I2C_delay(1);
+	DELAY5US;
   SCL2_L;			
 }
 
@@ -54,9 +54,9 @@ void I2C1_Stop(void)
 	SDA1_L;
 	_nop_();
 	SCL1_H;
-	I2C_delay(1);
+	DELAY5US;
 	SDA1_H;
-	I2C_delay(1);
+	DELAY5US;
 }
 void I2C2_Stop(void)
 {
@@ -64,9 +64,9 @@ void I2C2_Stop(void)
 	SDA2_L;
 	_nop_();
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	SDA2_H;
-	I2C_delay(1);
+	DELAY5US;
 }
 
 /**
@@ -80,12 +80,12 @@ void I2C2_Stop(void)
 BOOL I2C1_WaitAck(void) 	 
 {
 	SCL1_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA1_H;			
-	I2C_delay(1);
+	DELAY5US;
 	P3CR &= 0xBF;	//set p3_6 as input 
 	SCL1_H;
-	I2C_delay(1);
+	DELAY5US;
 	if(SDA1_read)
 	{
       SCL1_L;
@@ -100,12 +100,12 @@ BOOL I2C1_WaitAck(void)
 BOOL I2C2_WaitAck(void) 	 
 {
 	SCL2_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA2_H;			
-	I2C_delay(1);
+	DELAY5US;
 	P4CR &= 0xEF;	//set p4_4 as input 
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	if(SDA2_read)
 	{
       SCL2_L;
@@ -126,26 +126,26 @@ call parameter:None
 void I2C1_Ack(void)
 {	
 	SCL1_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA1_L;
-	I2C_delay(1);
+	DELAY5US;
 	SCL1_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL1_L;
-	I2C_delay(1);
+	DELAY5US;
 }
 #endif 
 
 void I2C2_Ack(void)
 {	
 	SCL2_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA2_L;
-	I2C_delay(1);
+	DELAY5US;
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL2_L;
-	I2C_delay(1);
+	DELAY5US;
 }
 
 #if 0
@@ -158,13 +158,13 @@ call parameter:None
 void I2C1_nAck(void)
 {
 	SCL1_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA1_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL1_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL1_L;
-	I2C_delay(1);
+	DELAY5US;
 
 }
 #endif 
@@ -172,13 +172,13 @@ void I2C1_nAck(void)
 void I2C2_nAck(void)
 {
 	SCL2_L;
-	I2C_delay(1);
+	DELAY5US;
 	SDA2_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	SCL2_L;
-	I2C_delay(1);
+	DELAY5US;
 
 }
 
@@ -194,16 +194,16 @@ void I2C1_TxByte(char i2c_data)
 	UCHAR i = 8;
 	while(i--) {
 		SCL1_L;
-		I2C_delay(1); 
+		DELAY5US; 
 		if( i2c_data & 0x80)
 			SDA1_H;
 		else 
 			SDA1_L;
 		i2c_data <<= 1;
-		I2C_delay(1);
+		DELAY5US;
 
 		SCL1_H;
-		I2C_delay(1);
+		DELAY5US;
 	}
 	SCL1_L;
 }
@@ -213,16 +213,16 @@ void I2C2_TxByte(char i2c_data)
 	UCHAR i = 8;
 	while(i--) {
 		SCL2_L;
-		I2C_delay(1); 
+		DELAY5US; 
 		if( i2c_data & 0x80)
 			SDA2_H;
 		else 
 			SDA2_L;
 		i2c_data <<= 1;
-		I2C_delay(1);
+		DELAY5US;
 
 		SCL2_H;
-		I2C_delay(1);
+		DELAY5US;
 	}
 	SCL2_L;
 }
@@ -246,9 +246,9 @@ UCHAR I2C1_RxByte(void)
 	while (i--) {  
 		I2cRxData <<= 1;  
 		SCL1_L;   
-		I2C_delay(1);
+		DELAY5US;
 		SCL1_H;
-		I2C_delay(1);
+		DELAY5US;
 		if(SDA1_read)  {   
 			I2cRxData |=0x01; 
 		}	
@@ -273,9 +273,9 @@ UCHAR I2C2_RxByte(void)
    while (i--) {  
   	I2cRxData <<= 1;  
     SCL2_L;   
-    I2C_delay(1);
+    DELAY5US;
 	SCL2_H;
-	I2C_delay(1);
+	DELAY5US;
 	 
  	if(SDA2_read)  {   
       I2cRxData |=0x01;  
@@ -405,26 +405,6 @@ BOOL I2C2_read(UCHAR i2c_adr,UCHAR * buffer,UCHAR NumtoRead)
 
 
 
-/* delay function used for I2C 
-return value: None
-call parameter: UCHAR delay_time: delay time length
-*/
-void I2C_delay(UCHAR delay_time)
-{
-#if 0
-   UCHAR i=50;   /* modify the i by the main clock frequency */ 
-   while(delay_time--){
-     while(i)i--;
-     i=50;
-   } 
-#endif 
-	UCHAR i=5;			//modify   50  
-   while(i) 
-   { 
-     i--; 
-   } 
-   
-}
 
 /******************* (C) COPYRIGHT 2009 SENLi *****END OF FILE****/
 
