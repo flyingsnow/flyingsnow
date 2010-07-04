@@ -18,7 +18,7 @@ Before reset make sure following for 2-wire mode:
 	 
 	 RST_LOW;
 	 //  SCL2_H;				 //delay 100us	 
-	 Delay(0x100);					 
+	 WaitUs(0x100);					 
 	 RST_HIGH;
 	 //  Delay(50);
 	 //  SDA2_H; 
@@ -183,7 +183,7 @@ T_ERROR_OP Si4730_Power_Up(T_POWER_UP_TYPE power_up_type)
 	I2C2_write(SI4730_Addr, Si4730_power_up, 3);
 
 //	DELAY(POWER_SETTLING);	//if use internal crystal, need wait 500ms, Si4730_power_up[1] = 0x(5x)
-	Delay(100);
+	WaitUs(100);
 	//wait CTS = 1
 	if(Si4730_Wait_CTS() != OK)
 		return LOOP_EXP_ERROR;		
@@ -205,10 +205,10 @@ T_ERROR_OP Si4730_Power_Down(void)
 * @par Required preconditions:
 */
 {
-	UCHAR Si4730_power_down[] = {0x11};	
+	UCHAR CODE Si4730_power_down[1] = {0x11};	
 
 	//send CMD
-	I2C2_write(SI4730_Addr, Si4730_power_down, 3);
+	I2C2_write(SI4730_Addr, Si4730_power_down,1);
 
 	//wait CTS = 1	
 	if(Si4730_Wait_CTS() != OK)
@@ -244,7 +244,6 @@ T_ERROR_OP Si4730_Set_Property(UCHAR *Si4730_set_property)
 }
 
 
-#if 1
 
 
 T_ERROR_OP Si4730_Tune_Freq(UCHAR band,UINT freq)
@@ -257,38 +256,37 @@ T_ERROR_OP Si4730_Tune_Freq(UCHAR band,UINT freq)
 */
 
 {	
-	UINT minfeq,maxfeq;
-	UCHAR Si4730_tune_freq[] = {0x20,0x00,0x27,0xF6,0x00};	//0x27F6=10230KHz
+//	UINT minfeq,maxfeq;
+	UCHAR Si4730_tune_freq[5] = {0x20,0x00,0x00,0x00,0x00};	//0x27F6=10230KHz
 	
-	UINT loop_counter = 5000;
-
+//	UINT loop_counter = 5000;
 	switch(band) {
 		case Band_FM1:
 		case Band_FM2:
 		case Band_FM3:				
-			minfeq = FMmin;
-			maxfeq = FMmax;
+//			minfeq = FMmin;
+//			maxfeq = FMmax;
 			Si4730_tune_freq[0] = 0x20;
 			break;
 		case Band_MW1:
 		case Band_MW2:			
-			minfeq = MWmin;
-			maxfeq = MWmax;
+//			minfeq = MWmin;
+//			maxfeq = MWmax;
 			Si4730_tune_freq[0] = 0x40;
 			break;
 	}	
-
+/*
 	if (freq < minfeq) {
 		freq = minfeq;
 	}
 	if (freq > maxfeq) {
 		freq = maxfeq;
 	}
+*/
+//save the frequency infomation 
+	SaveBand = band;
+	SaveFreq = freq; 
 
-	//save the frequency infomation 
-//	SaveBand = band;
-//	SaveFrequency = freq; 
-	
 	Si4730_tune_freq[3] = (freq&0x00ff);
 	Si4730_tune_freq[2] = (freq&0xff00) >> 8;
 	
@@ -325,7 +323,7 @@ UCHAR Si4730_RSQ_Status(UCHAR band , UCHAR Read_Status)
 */
 {
 	UCHAR Si4730_rsq_status[] = {0x23,0x00};	
-	UCHAR loop_counter = 1500;
+//	UCHAR loop_counter = 1500;
 	
 	switch(band) {
 		case Band_FM1:
@@ -376,7 +374,6 @@ UCHAR Si4730_RSQ_Status(UCHAR band , UCHAR Read_Status)
 	
 
 }
-#endif 
 
 /******************* (C) COPYRIGHT 2009 SENLi *****END OF FILE****/
 

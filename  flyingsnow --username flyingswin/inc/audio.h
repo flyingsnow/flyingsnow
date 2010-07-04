@@ -14,7 +14,7 @@
 #define BAL_EQ		3
 #define FAD_EQ		4
 
-#define DEFVOL		15
+#define DEFVOL		16	
 #define MINVOL		63
 
 

@@ -6,7 +6,7 @@ signed char CurrentVol = DEFVOL;
 signed char SetBASS = 7;
 signed char SetTREB = 7;
 signed char SetBAL = 9;
-signed char SetFAD = 9;
+//signed char SetFAD = 9;
 
 UCHAR DispVol;
 BOOL  ChangeVolFlag;
@@ -50,17 +50,16 @@ void SC7313_Driver(UCHAR temp)
 void SC7313_initial(UCHAR channel)
 {	
 
-	
-	Delay(0xfff);
+	WaitUs(0xff);
 	SC7313_Driver(channel);		//Select channel 1 ,LOUD on
-	Delay(0xff);
+	WaitUs(0xff);
 	SC7313_Driver(MINVOL - CurrentVol*2);
-	Delay(0xff);
+	WaitUs(0xff);
 	
 	SC7313_Driver(0x80);		//Speaker LF
-	Delay(0xff);
+	WaitUs(0xff);
 	SC7313_Driver(0xa0);		//Speaker RF
-	Delay(0xff);
+	WaitUs(0xff);
 
 	if (SetBAL <= 7)			
 		SC7313_Driver(0xA0 | Attenuators[SetBAL]);		
@@ -69,20 +68,19 @@ void SC7313_initial(UCHAR channel)
 
 /* 
 	
-	Delay(0xff);
+	WaitUs(0xff);
 	if (SetBAL <= 7)			
 		SC7313_Driver(0xA0 | Attenuators[SetBAL]);		
 	else 
 			SC7313_Driver(0x80 | Attenuators[SetBAL]);
-	delay();
+	WaitUs(0xff);
 	SC7313_speaker(0xc0);
-	delay();
+	WaitUs(0xff);
 	SC7313_speaker(0xe0);
-	delay();
 */
-	Delay(0xff);
+	WaitUs(0xff);
 	SC7313_Driver( 0x60 | BASS_TABLE[SetBASS]);			//Bass
-	Delay(0xff);
+	WaitUs(0xff);
 	SC7313_Driver(0x70 | BASS_TABLE[SetTREB]);			//Treble
 }
 
