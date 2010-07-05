@@ -8,9 +8,10 @@
 *					LOCAL MACRO
 **********************************************************
 */
-#define 	ADC_KEY_SCAN_TIME		20
-#define 	ADC_KEY_JTTER_TIME		30
-#define 	ADC_KEY_CP_TIME			1000
+#define 	ADC_KEY_SCAN_TIME		4
+#define 	ADC_KEY_JTTER_TIME		12
+#define 	ADC_KEY_CP_TIME			200
+#define 	ADC_KEY_HOLD_TIME		20
 
 #define 	ADC_KEY_RANGE			30
 #define		ADC_KEY_COUNT			8
@@ -24,8 +25,8 @@
 **********************************************************
 */
 
-TIMER	DATA		AdcKeyWaitTimer;
-TIMER	DATA		AdcKeyScanTimer;
+UINT 	DATA		AdcKeyWaitTimer;
+UINT	DATA		AdcKeyScanTimer;
 ADC_KEY_STATE	AdcKeyState;
 
 UINT DATA PreKeyIndex = 0;
@@ -159,7 +160,7 @@ VOID
 AdcKeyScanInit(VOID)
 {
 	AdcKeyState = ADC_KEY_STATE_IDLE;
-	TimeOutSet(&AdcKeyScanTimer, 0);
+	AdcKeyScanTimer = 0;
 }
 
 
@@ -174,11 +175,11 @@ AdcKeyEventGet(VOID)
 	KEY_EVENT		event = IN_KEY_NONE;
 
 //	DBG(("AdcKeyEventGet*******\n"));
-	if (!IsTimeOut(&AdcKeyScanTimer))
+	if (AdcKeyScanTimer > 0)
 	{
 		return IN_KEY_NONE;
 	}
-	TimeOutSet(&AdcKeyScanTimer, ADC_KEY_SCAN_TIME);	
+	AdcKeyScanTimer = ADC_KEY_SCAN_TIME;	
 
 //	AdcOpen(12);
 
@@ -204,7 +205,7 @@ AdcKeyEventGet(VOID)
 			}
 
 			PreKeyIndex = KeyIndex;
-			TimeOutSet(&AdcKeyWaitTimer, ADC_KEY_JTTER_TIME);
+			AdcKeyWaitTimer = ADC_KEY_JTTER_TIME;
 //			DBG(("GOTO JITTER!\n"));
 			AdcKeyState = ADC_KEY_STATE_JITTER;
 				
@@ -214,10 +215,10 @@ AdcKeyEventGet(VOID)
 //				DBG(("GOTO IDLE Because jitter!\n"));
 				AdcKeyState = ADC_KEY_STATE_IDLE;
 			}
-			else if(IsTimeOut(&AdcKeyWaitTimer))
+			else if(AdcKeyWaitTimer == 0)
 			{
 //				DBG(("GOTO PRESS_DOWN!\n"));
-				TimeOutSet(&AdcKeyWaitTimer, ADC_KEY_CP_TIME);
+				AdcKeyWaitTimer = ADC_KEY_CP_TIME;
 				AdcKeyState = ADC_KEY_STATE_PRESS_DOWN;
 			}
 			break;
@@ -230,10 +231,10 @@ AdcKeyEventGet(VOID)
 				AdcKeyState = ADC_KEY_STATE_IDLE;
 				return AdcKeyEvent[PreKeyIndex][0];
 			}
-			else if(IsTimeOut(&AdcKeyWaitTimer))
+			else if(AdcKeyWaitTimer == 0)
 			{
 				
-				TimeOutSet(&AdcKeyWaitTimer,40); //Added by hwt ,for generate Continuous Press event Dec 07,2009 
+				AdcKeyWaitTimer = ADC_KEY_HOLD_TIME; //Added by hwt ,for generate Continuous Press event Dec 07,2009 
 				//return key cp value
 //				DBG(("ADC KEY CP!*****************************\n"));
 				AdcKeyState = ADC_KEY_STATE_CP;
@@ -250,8 +251,8 @@ AdcKeyEventGet(VOID)
 				return AdcKeyEvent[PreKeyIndex][2];
 			}
 			else {
-				if (IsTimeOut(&AdcKeyWaitTimer)) {		
-					TimeOutSet(&AdcKeyWaitTimer,40); //Added by hwt ,for generate Continuous Press event Dec 07,2009 
+				if (AdcKeyWaitTimer == 0) {		
+					AdcKeyWaitTimer = ADC_KEY_HOLD_TIME; //Added by hwt ,for generate Continuous Press event Dec 07,2009 
 					return AdcKeyEvent[PreKeyIndex][3];
 				}
 			}

@@ -12,28 +12,32 @@
 #include "adc_key.h"
 #include "si4730.h"
 #include "audio.h"
-//
-// Declare control port and pins. Oct 21,2009 by  He
-#define MUTE_PIN_MASK		0x08	//GPIO_C.3
+#include "power.h"
 
+
+typedef struct workmodestc { 
+	WORKMODE Current; 
+	WORKMODE Next; 
+	WORKMODE Last; 
+	WORKMODE Save; 
+} WorkmodeStruct; 
+
+typedef struct sysstuct { 
+	POWER_MODE	PowerMode; 
+	ACC_STATE	AccState;
+	WorkmodeStruct 	FWorkMode; 
+} SYSStuct; 
+ 
+extern SYSStuct System; 
 	
 
-#define MUTE_AMP()			P3_4 = 0
-#define UnMUTE_AMP()		P3_4 = 1
 
-#define SYS_ON()		P0_4 = 1
-#define POWER_ON()		P0_5 = 1
-
-#define SYS_OFF()		P0_4 = 0
-#define POWER_OFF()		P0_5 = 1
-	
-#define Read_ACC_Pin	P0_3
 
 extern DWORD	DATA	gSysTick; 					//system tick counter
 extern UCHAR 	t_sec;
 extern UCHAR 	t_min;
 extern UCHAR 	t_hour;
-
+extern UINT		DATA 	sBlinkTimer;
 
 //
 // MCU Wait Ms.

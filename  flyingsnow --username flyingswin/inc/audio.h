@@ -21,7 +21,8 @@
 #define Channel_Aux 	0x42
 #define Channel_Radio	0x40
 
-//#define Mute_State		(GPIOD->ODR & (vu8)GPIO_PIN_4)
+#define MUTE_AMP()			P3_4 = 0
+#define UnMUTE_AMP()		P3_4 = 1
 
 void SC7313_initial(UCHAR channel);
 //void SC7313_Driver(UCHAR temp);

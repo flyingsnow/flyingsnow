@@ -9,16 +9,16 @@ SysTickInit(
 	)
 {
 //#warning	"Ivan: TIMER4 AS SYSTEM TICK!"
-	gSysTick = 0xFFFFFFF0;
+//	gSysTick = 0xFFFFFFF0;
 	EA = 0;
 	INSCON |= 0x40; //select Bank1
 
-	//setup TIM4 as 1ms time base 
+	//setup TIM4 as 5ms time base 
 	// prescaler 1/8
 	T4PS0 = 1;
 	//1ms preloader value 
-	TL4 = 0x88;
-	TH4 = 0xFE;
+	TL4 = 0xAC;
+	TH4 = 0xF8;
 	TR4 = 1;			//Enable TIM4
 
 	//setup Tim3 ,1s clock driver
@@ -62,7 +62,7 @@ Timer3(void)				interrupt 11
 void
 Timer4(void)			interrupt 13		 				
 {
-
+#if 0
  	if(!++(*((BYTE*)(&gSysTick) + 3)))    
  	{
   		if(!++(*((BYTE*)(&gSysTick) + 2)))
@@ -73,5 +73,8 @@ Timer4(void)			interrupt 13
    			}
   		}
  	}
-
+#endif 
+	if(AdcKeyScanTimer > 0) AdcKeyScanTimer--;
+	if(AdcKeyWaitTimer > 0) AdcKeyWaitTimer--;
+	if(sBlinkTimer >0) sBlinkTimer--;
 }

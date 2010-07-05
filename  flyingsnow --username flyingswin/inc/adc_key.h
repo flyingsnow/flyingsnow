@@ -105,6 +105,11 @@ typedef enum _ADC_KEY_STATE
 
 } ADC_KEY_STATE;
 
+
+
+extern UINT	DATA AdcKeyWaitTimer;
+extern UINT DATA AdcKeyScanTimer;
+
 /*
 **********************************************************
 *					GLOBAL FUNCTION PROTOTYPE

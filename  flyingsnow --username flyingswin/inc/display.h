@@ -31,6 +31,6 @@ extern UCHAR DispBuff[12];
 ********************************************/
 void DisplayInit(void);
 
-
+void dispFrequency(enum BAND band,UINT freq);
 void DisplayMain(void); 
 #endif 
