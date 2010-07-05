@@ -1,4 +1,5 @@
 #include "main.h"
+#if 0
 //
 // Set time out value of softtimer.
 //
@@ -40,4 +41,4 @@ IsTimeOut(
 	IEN1 |= 0x40;		//Enable tim4 interrupt 
 	return timer->IsTimeOut;
 }
-
+#endif 

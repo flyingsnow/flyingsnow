@@ -179,7 +179,7 @@ VOID DisplayInit()
 
 VOID DisplayMain(VOID)
 {	
-	dispFrequency(SaveBand,SaveFreq);
+//	dispFrequency(SaveBand,SaveFreq);
 	Write_string(8,DispBuff,12);
 	
 }
