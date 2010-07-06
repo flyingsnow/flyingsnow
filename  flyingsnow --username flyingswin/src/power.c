@@ -88,57 +88,70 @@ void Power_main(void)
 * @retval 
 */
 {	
+	switch(gKeyCode) {
+	case IN_KEY_PWR_SP:
+			if(System.PowerMode == POWERMODE_POWEROFF)
+				System.PowerMode = POWERMODE_POWERONREQ;
+		break;
+
+	case IN_KEY_PWR_CP:
+			if(System.PowerMode == POWERMODE_POWERON)
+				System.PowerMode = POWERMODE_POWEROFFREQ;
+
+		break;
+	}
+	
 	switch(System.PowerMode) {			
-		case POWERMODE_POWERON:   
-			 break;   
-			 
-		case POWERMODE_POWERONREQ:	 
-			 //here power on the tuner/audioprocessor 			 
-			 POWER_ON();				
-			 
-			 if (System.FWorkMode.Save == WORKMODE_AUX) 
-	 			 System.FWorkMode.Current = System.FWorkMode.Save;
-	 		 else 
-	 		 	System.FWorkMode.Current = WORKMODE_RADIO;
+	case POWERMODE_POWERON:   
+		 break;   
+		 
+	case POWERMODE_POWERONREQ:	 
+		 //here power on the tuner/audioprocessor 			 
+		 POWER_ON();				
+		 
+		 if (System.FWorkMode.Save == WORKMODE_AUX) 
+ 			 System.FWorkMode.Current = System.FWorkMode.Save;
+ 		 else 
+ 		 	System.FWorkMode.Current = WORKMODE_RADIO;
 
-		     if(System.FWorkMode.Current == WORKMODE_AUX)  {
-				WaitMs(500);
-				SC7313_initial(Channel_Aux);
-			 }
-			 else {
-				 WaitMs(500);
-				 //Here boot the tuner...	 
-				 while ( Si4730_Test() != OK ) {
-					 Tuner_Init(SaveBand,SaveFreq);	
-				 }
-				 SC7313_initial(Channel_Radio);	
-			 }
-			 
-			 UnMUTE_AMP();
-			 System.PowerMode = POWERMODE_POWERON;				 
+	     if(System.FWorkMode.Current == WORKMODE_AUX)  {
+			WaitMs(500);
+			SC7313_initial(Channel_Aux);
+		 }
+		 else {
+			 WaitMs(200);
+			 //Here boot the tuner...	 
+//				 while ( Si4730_Test() != OK ) {
+				 Tuner_Init(SaveBand,SaveFreq);	
+//				 }
+			 SC7313_initial(Channel_Radio);	
+		 }
+		 
+		 UnMUTE_AMP();
+		 System.PowerMode = POWERMODE_POWERON;				 
 
-			 break;   
-			 
-		case POWERMODE_POWEROFF:   
-			 break;   
-			 
-		case POWERMODE_POWEROFFREQ:			
-	 		 MUTE_AMP();			 
-			 WaitMs(300);
-			 Si4730_Power_Down();			 
-			 POWER_OFF();							//set power-on pin low
-			 status = Status_Idle;							//reset radio status 
-			 System.PowerMode = POWERMODE_POWEROFF;
-			 //Modify by Hwt Dec,22,2009
-			 if (System.FWorkMode.Current == WORKMODE_IDLE) {			 	
-				 System.FWorkMode.Save = System.FWorkMode.Last;				 
-			 }
-			 else 
-				 System.FWorkMode.Save = System.FWorkMode.Current;
-			 
-			 System.FWorkMode.Current = WORKMODE_IDLE;
-			 
-			 break;   
+		 break;   
+		 
+	case POWERMODE_POWEROFF:   
+		 break;   
+		 
+	case POWERMODE_POWEROFFREQ:			
+ 		 MUTE_AMP();			 
+		 WaitMs(200);
+		 Si4730_Power_Down();			 
+		 POWER_OFF();							//set power-on pin low
+		 status = Status_Idle;							//reset radio status 
+		 System.PowerMode = POWERMODE_POWEROFF;
+		 //Modify by Hwt Dec,22,2009
+		 if (System.FWorkMode.Current == WORKMODE_IDLE) {			 	
+			 System.FWorkMode.Save = System.FWorkMode.Last;				 
+		 }
+		 else 
+			 System.FWorkMode.Save = System.FWorkMode.Current;
+		 
+		 System.FWorkMode.Current = WORKMODE_IDLE;
+		 
+		 break;   
 	}	
 }	
 

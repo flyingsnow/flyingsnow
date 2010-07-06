@@ -1,17 +1,14 @@
 #include "main.h"
 #include "interrupt.h"
 
-DWORD	DATA	gSysTick; 					//system tick counter
-bit direction,ast,singlestep;
+bit DispRefresh;
+bit Blink;
 
-UCHAR t_sec = 0;
+UCHAR t_halfsec = 0;
 UCHAR t_min = 0;
 UCHAR t_hour = 0;					//clock 
 
-SYSStuct System; 
-
-bit DispRefresh;
-UINT DATA sBlinkTimer;
+SYSStuct DATA System; 
 KEY_EVENT	gKeyCode = IN_KEY_NONE;
 
 VOID  InitGpio(VOID)
@@ -38,100 +35,30 @@ main()
 	EA = 1;
 
 	PowerInit();
-//	SYS_ON();
 //	POWER_ON();
-//	WaitMs(300);
-//	SC7313_initial(Channel_Radio);	
-//	AdcKeyScanInit();
-//	DisplayInit();
-//	Tuner_Init(SaveBand,SaveFreq);
-	sBlinkTimer = 0;
-	UnMUTE_AMP();
-	Wait = 0;
 	while(1) {
 
 		ACC_Check();
 		if (System.AccState == ACC_ON) {
 			gKeyCode = AdcKeyEventGet();
 			Power_main();
-			
-			if(gKeyCode != IN_KEY_NONE){
-				switch(gKeyCode) {
-				case IN_KEY_PWR_SP:					
-					if(System.PowerMode == POWERMODE_POWEROFF) 
-						System.PowerMode = POWERMODE_POWERONREQ;
+		//	ClockMain();
+			if(System.PowerMode == POWERMODE_POWERON) {
+				switch(System.FWorkMode.Current) {
+				case WORKMODE_RADIO:
+					TunerMain();
 					break;
 
-				case IN_KEY_PWR_CP:
-					if (System.PowerMode == POWERMODE_POWERON)
-						System.PowerMode = POWERMODE_POWEROFFREQ;
+				case WORKMODE_AUX:
+				//	AuxMain();
 					break;
-					
-				case IN_KEY_NEXT_SP:
-					direction = 1;
-					ast = 0;
-					singlestep = 0;
-					status = Status_Seek;
-
-					break;
-
-				case IN_KEY_PRE_SP:
-					direction = 0;
-					ast = 0;
-					singlestep = 0;
-					status = Status_Seek;
-				
-					break;
-
-				case IN_KEY_NEXT_CP:				
-					direction = 1;
-					ast = 0;
-					singlestep = 1;
-					status = Status_Single;
-
-					break;
-
-				case IN_KEY_NEXT_CPR:				
-					status = Status_Idle;
-					break;
-
-				case IN_KEY_AST_CP:
-					direction = 1;
-					ast = 1;
-					singlestep = 0;
-					status = Status_AST;
-					break;
-
-				case IN_KEY_P1_SP:
-					Tuner_TunetoPreset(PRESET1);
-					break;
-					
 				}
-
-		        DispBuff[6] = Num[(gKeyCode/100)];
-		        DispBuff[7] = Num[((gKeyCode/10)%10)];
-		        DispBuff[8] = Num[(gKeyCode%10)];
-				DisplayMain();
-				sBlinkTimer = 200;
-
+				AudioMain();
 			}
-			
-			if(status != Status_Idle) {
-				Tuner_Seek(direction, ast,singlestep);
-				DispRefresh = 1;
-				
-			}
-			if(sBlinkTimer == 0 || DispRefresh == 1) {
-					dispFrequency(SaveBand,SaveFreq);
-					DisplayMain();
-					DispRefresh = 0;
-					sBlinkTimer = 100;
-				}
-			}
+			DisplayMain();			
+		}
 	}
-	return 0;
 }
-
 
 //
 // MCU Wait Ms.
@@ -141,12 +68,12 @@ WaitMs(
 	ULONG ms										//Wait ms counter value
 	)	
 {
-	UINT us = 1000;
+	UINT us = 500;
 	while (ms--)
 	{
 		while(us--)
 			;
-		us = 1000;
+		us = 500;
 	}
 }
 

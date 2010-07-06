@@ -18,7 +18,7 @@
 
 
  
-extern UCHAR XDATA Num[10];
+extern UCHAR CODE Num[10];
 extern UCHAR DispBuff[12];
 
 

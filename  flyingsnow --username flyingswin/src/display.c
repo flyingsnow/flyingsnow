@@ -1,8 +1,8 @@
 #include "main.h"
 #include "string.h"
 //UCHAR DispRefresh;
-UCHAR XDATA Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
-UCHAR DispBuff[12];
+UCHAR CODE Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
+UCHAR  DispBuff[12];
 
 
 VOID Start(VOID)
@@ -154,6 +154,92 @@ void dispFrequency(enum BAND band,UINT freq)
 }
 
 
+
+
+
+
+static VOID
+DisplayAuxInfo(
+	VOID
+	)
+/*********************************************	
+	Function:		AuxDisplay	
+	Description:	  
+	Write/Modify:  
+	Time:	  
+*********************************************/	   
+{		
+	DispBuff[0]=0x00; 
+	DispBuff[1]=0x00;
+	DispBuff[2]=0x00;	
+	DispBuff[3]=0x00;	
+	DispBuff[4]=0x00;		
+	DispBuff[5]=0x7E;		//A
+	DispBuff[6]=0xEA;		//U
+	DispBuff[7]=0x00;		
+	DispBuff[8]=0x00;	
+	DispBuff[9]=0x00; 
+	DispBuff[10]=0x00;	 
+	DispBuff[11]&=0xf7;
+	
+//	if (MuteFalg) DispBuff[6] |= 0x01; 
+//	DispRefresh= 1;   
+}
+
+
+void DisplayClk(void)
+{	
+	UCHAR i = 10;
+	UCHAR h1,h2;
+	UCHAR m1,m2;
+
+	
+//	if( DispVol != 0)
+//		return;
+		
+ 	h1 = t_hour/10;
+	h2 = t_hour%10;
+  	m1 = t_min /10;
+  	m2 = t_min %10;
+
+  	while(i--) DispBuff[i+1]=0x00;
+
+	//display vloum information
+	if (System.PowerMode == POWERMODE_POWEROFF )
+		DispBuff[11] = 0x00;
+	else
+		DispBuff[11] &= 0xF7; 
+	
+	DispBuff[9] = Num[m2];   
+    DispBuff[8] = Num[m1];
+		
+    DispBuff[7] = Num[h2];		
+    (h1 == 0) ?(DispBuff[6] &= 0x10):(DispBuff[6] |= Num[h1]);   
+    if(t_halfsec%2) 
+		DispBuff[0] = 0x00;
+	else		
+		DispBuff[0] = 0x20;
+#if 0		
+
+//	if(System.DispMode.Current == DISPMODE_CCLOCK && t_100ms > 4 ) {
+		if( ClockStatus == CLK_CHour && t_100ms > 4 ) {
+			DispBuff[7] = 0x00;   
+			DispBuff[6] = 0x00;			
+			DispBuff[0] = 0x20;
+		}
+		if(ClockStatus == CLK_CMin&& t_100ms > 4 ) {
+			DispBuff[9] = 0x00;   
+			DispBuff[8] = 0x00;
+			DispBuff[0] = 0x20;
+		}
+//		DispBuff[11] |= 0x02;
+//	}
+//	if (MuteFalg) DispBuff[5] |= 0x10; 
+   
+   DispRefresh = 1;
+#endif
+}
+
 /*******************************************
                    初始化HT1621 函数
 函数原型:VOID DisplayInit()
@@ -179,7 +265,15 @@ VOID DisplayInit()
 
 VOID DisplayMain(VOID)
 {	
-//	dispFrequency(SaveBand,SaveFreq);
+	if(System.PowerMode == POWERMODE_POWERON) {
+		if(System.FWorkMode.Current == WORKMODE_RADIO)
+			dispFrequency(SaveBand,SaveFreq);
+		if (System.FWorkMode.Current == WORKMODE_AUX)
+			DisplayAuxInfo();
+	}
+	else {
+		DisplayClk();
+	}
 	Write_string(8,DispBuff,12);
 	
 }

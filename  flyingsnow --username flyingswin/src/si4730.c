@@ -369,9 +369,35 @@ UCHAR Si4730_RSQ_Status(UCHAR band , UCHAR Read_Status)
  		default:
 			break;
 
-
 	}
+}
+
+T_ERROR_OP Si4730_HardMute(bit MuteState)
+/**
+* @brief	Mutes the audio output
+* @par Parameters: MuteState 
+*					TRUE: mute	FALSE: unmute
+*								
+* @retval 
+* @par Required preconditions: 
+*/
+
+{
 	
+	BYTE Si4730_Property_data[6] = {0x12,0x00,0x40,0x01,0x00,0x00};	
+
+	if(MuteState) {
+		Si4730_Property_data[5] = 0x03;
+	}
+	else {		
+		Si4730_Property_data[5] = 0x00;
+	}
+
+	
+	if (Si4730_Set_Property(Si4730_Property_data) != OK)
+			return LOOP_EXP_ERROR;	
+		
+	return OK;
 
 }
 

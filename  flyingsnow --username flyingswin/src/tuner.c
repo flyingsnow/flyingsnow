@@ -6,10 +6,11 @@ enum BAND SaveBand = Band_FM1;
 UINT CurrentFreq = Frequency_Default;
 UINT SaveFreq = Frequency_Default;
 
-enum SEEKSTATE SeekState = Seek_Configure;
+enum SEEKSTATE DATA SeekState = Seek_Configure;
 
-enum STATUS_RADIO status = Status_Idle;		
+enum STATUS_RADIO DATA status = Status_Idle;		
 
+bit direction,ast,singlestep,TunerMuteFlag;
 
 UINT  Preset_Freq[2][PresetNum] =  {
 	{603,999,1404,594,990,1395},
@@ -227,4 +228,43 @@ void Tuner_Seek(bit direction, bit ast, bit singlestep)
 }
 
 #endif 
+
+
+void TunerMain(void)
+{
+	if(gKeyCode == IN_KEY_AST_CP) {
+		direction = 1;
+		ast = 1;
+		singlestep = 0;
+		status = Status_AST;
+		SeekState = Seek_Configure; 			
+	}
+	if(gKeyCode == IN_KEY_NEXT_SP) {
+		direction = 1;
+		ast = 0;
+		singlestep = 0;
+		status = Status_Seek;
+		SeekState = Seek_Configure; 			
+	}
+	if(gKeyCode == IN_KEY_PRE_SP) {
+		direction = 0;
+		ast = 0;
+		singlestep = 0;
+		status = Status_Seek;
+		SeekState = Seek_Configure; 			
+	}
+	
+	if( status != Status_Idle) {
+		Tuner_Seek(direction,ast,singlestep);	
+		Si4730_HardMute(1);
+		TunerMuteFlag = 1;
+	}
+	else {
+		if(TunerMuteFlag == 1)	{		
+			Si4730_HardMute(0);
+			TunerMuteFlag = 0;
+		}
+	}
+
+}
 

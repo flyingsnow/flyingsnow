@@ -24,12 +24,11 @@
 *					LOCAL VARIABLE
 **********************************************************
 */
+UCHAR   DATA		PreKeyIndex = 0;
+UCHAR	DATA		AdcKeyWaitTimer;
+UCHAR	DATA		AdcKeyScanTimer;
+ADC_KEY_STATE	DATA AdcKeyState;
 
-UINT 	DATA		AdcKeyWaitTimer;
-UINT	DATA		AdcKeyScanTimer;
-ADC_KEY_STATE	AdcKeyState;
-
-UINT DATA PreKeyIndex = 0;
 
 
 /*

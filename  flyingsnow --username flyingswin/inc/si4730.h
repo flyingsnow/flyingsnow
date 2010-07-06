@@ -104,6 +104,7 @@ UCHAR Si4730_RSQ_Status(UCHAR band , UCHAR Read_Status);
 
 T_ERROR_OP Si4730_Test(void);
 
+T_ERROR_OP Si4730_HardMute(bit MuteState);
 
 #endif
 
