@@ -28,7 +28,7 @@ typedef struct	_TIMER
 #else
 #define	TIMER_EXT	extern
 #endif
-TIMER_EXT	DWORD	DATA	gSysTick; 					//system tick counter
+//TIMER_EXT	DWORD	DATA	gSysTick; 					//system tick counter
 
 
 /*

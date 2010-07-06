@@ -4,7 +4,7 @@
 #define VOLUME_MAX  31		//音量上限 
 #define BASS_MAX    14		//低音上限 
 #define TREB_MAX    14		//高音上限 
-#define BAL_MAX     18		//左右平衡上限 
+#define BAL_MAX     14		//左右平衡上限 
 #define FAD_MAX     10		//前后平衡上限 
 #define LOUD_MAX    1		//响度上限 
 
@@ -28,7 +28,7 @@ void SC7313_initial(UCHAR channel);
 //void SC7313_Driver(UCHAR temp);
 void AudioMain(void);
 //void VolTimer(void);
-//void EQ_Display(void);
+void EQ_Display(void);
 
 
 

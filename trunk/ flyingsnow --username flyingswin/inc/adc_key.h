@@ -107,8 +107,8 @@ typedef enum _ADC_KEY_STATE
 
 
 
-extern UINT	DATA AdcKeyWaitTimer;
-extern UINT DATA AdcKeyScanTimer;
+extern UCHAR DATA AdcKeyWaitTimer;
+extern UCHAR DATA AdcKeyScanTimer;
 
 /*
 **********************************************************

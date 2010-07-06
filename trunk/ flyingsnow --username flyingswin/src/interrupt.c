@@ -24,6 +24,8 @@ SysTickInit(
 	//setup Tim3 ,1s clock driver
 	T3CON = 0x02;
 	TR3 = 1;
+	TL3 = 0xff;
+	TH3 = 0xbf;
 	
 	INSCON &= ~0x40;	//select Bank0
 	IEN1 |= 0x50;		//Enable tim4 and Tim3 interrupt 
@@ -37,10 +39,10 @@ SysTickInit(
 void
 Timer3(void)				interrupt 11
 {
-	t_sec++;		              /* Increment second counter */
-	if(t_sec == 60)               /* 1 min is completed*/
+	t_halfsec++;		              /* Increment second counter */
+	if(t_halfsec == 120)               /* 1 min is completed*/
 	{
-		t_sec = 0;                /* Clear second counter */
+		t_halfsec = 0;                /* Clear second counter */
 		t_min++;                  /* Increment minute counter */
 		if(t_min == 60)     	  /* 1 hour is completed */
 		{
@@ -76,5 +78,4 @@ Timer4(void)			interrupt 13
 #endif 
 	if(AdcKeyScanTimer > 0) AdcKeyScanTimer--;
 	if(AdcKeyWaitTimer > 0) AdcKeyWaitTimer--;
-	if(sBlinkTimer >0) sBlinkTimer--;
 }

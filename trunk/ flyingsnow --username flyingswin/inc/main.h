@@ -6,7 +6,7 @@
 #include "type.h"
 #include <INTRINS.H>
 #include <sh79f166.h>
-#include "timer.h"
+//#include "timer.h"
 #include "tuner.h"
 #include "display.h"
 #include "adc_key.h"
@@ -28,17 +28,16 @@ typedef struct sysstuct {
 	WorkmodeStruct 	FWorkMode; 
 } SYSStuct; 
  
-extern SYSStuct System; 
+extern SYSStuct DATA System; 
 	
 
 
+extern KEY_EVENT	gKeyCode;
 
-extern DWORD	DATA	gSysTick; 					//system tick counter
-extern UCHAR 	t_sec;
+extern UCHAR 	t_halfsec;
 extern UCHAR 	t_min;
 extern UCHAR 	t_hour;
-extern UINT		DATA 	sBlinkTimer;
-
+extern bit 		Blink;
 //
 // MCU Wait Ms.
 //
