@@ -1,7 +1,7 @@
 #include "main.h"
 
 //
-// System tick 1ms initilization.
+// System tick 5ms initilization.
 //
 void
 SysTickInit(
@@ -21,7 +21,7 @@ SysTickInit(
 	TH4 = 0xF8;
 	TR4 = 1;			//Enable TIM4
 
-	//setup Tim3 ,1s clock driver
+	//setup Tim3 ,1/2s clock driver
 	T3CON = 0x02;
 	TR3 = 1;
 	TL3 = 0xff;
@@ -39,6 +39,7 @@ SysTickInit(
 void
 Timer3(void)				interrupt 11
 {
+	EA = 0;
 	t_halfsec++;		              /* Increment second counter */
 	if(t_halfsec == 120)               /* 1 min is completed*/
 	{
@@ -53,8 +54,12 @@ Timer3(void)				interrupt 11
 				t_hour = 0;       /* Clear hour counter */
 			}
 		}
-	}           
+	}   
 
+	if(!DispRefresh)
+		DispRefresh = 1;
+	
+	EA = 1;
 }
 
 
@@ -64,6 +69,7 @@ Timer3(void)				interrupt 11
 void
 Timer4(void)			interrupt 13		 				
 {
+	EA = 0;
 #if 0
  	if(!++(*((BYTE*)(&gSysTick) + 3)))    
  	{
@@ -78,4 +84,6 @@ Timer4(void)			interrupt 13
 #endif 
 	if(AdcKeyScanTimer > 0) AdcKeyScanTimer--;
 	if(AdcKeyWaitTimer > 0) AdcKeyWaitTimer--;
+
+	EA = 1;
 }

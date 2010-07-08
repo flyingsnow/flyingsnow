@@ -25,6 +25,20 @@ typedef enum _KEY_EVENT
 	IN_KEY_NONE = 0x00,
 		
 	IN_KEY_MOD_SP = KEY_EVENT_BASE_ADDR,
+
+	IN_KEY_P1_SP,
+	IN_KEY_P2_SP,
+	IN_KEY_P3_SP,
+	IN_KEY_P4_SP,
+	IN_KEY_P5_SP,
+	IN_KEY_P6_SP,
+	
+	IN_KEY_P1_CP,
+	IN_KEY_P2_CP,
+	IN_KEY_P3_CP,
+	IN_KEY_P4_CP,
+	IN_KEY_P5_CP,
+	IN_KEY_P6_CP,
 	
 	IN_KEY_VOL_ADD,
 	IN_KEY_VOL_CADD,
@@ -56,25 +70,7 @@ typedef enum _KEY_EVENT
 	IN_KEY_PWR_CP,
 	
 	IN_KEY_SEL_SP,
-	IN_KEY_SEL_CP,
-
-	IN_KEY_P1_SP,
-	IN_KEY_P1_CP,
-	
-	IN_KEY_P2_SP,
-	IN_KEY_P2_CP,
-	
-	IN_KEY_P3_SP,
-	IN_KEY_P3_CP,
-
-	IN_KEY_P4_SP,
-	IN_KEY_P4_CP,
-
-	IN_KEY_P5_SP,
-	IN_KEY_P5_CP,
-
-	IN_KEY_P6_SP,
-	IN_KEY_P6_CP
+	IN_KEY_SEL_CP
 
 } KEY_EVENT;
 
@@ -118,7 +114,7 @@ extern UCHAR DATA AdcKeyScanTimer;
 
 VOID InitAdc(VOID);
 
-UINT AdcReadChannel(ADC_Channel_TypeDef ADC_Channel);
+//UINT AdcReadChannel(ADC_Channel_TypeDef ADC_Channel);
 
 //
 // Initialize adc key scan (GPIO) operation.

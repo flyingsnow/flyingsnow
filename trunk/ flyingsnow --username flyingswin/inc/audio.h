@@ -1,7 +1,7 @@
 #ifndef __AUDIO_H
 #define __AUDIO_H
 
-#define VOLUME_MAX  31		//音量上限 
+#define VOL_MAX  31		//音量上限 
 #define BASS_MAX    14		//低音上限 
 #define TREB_MAX    14		//高音上限 
 #define BAL_MAX     14		//左右平衡上限 
@@ -14,6 +14,7 @@
 #define BAL_EQ		3
 #define FAD_EQ		4
 
+#define MAXVOL		0
 #define DEFVOL		16	
 #define MINVOL		63
 
@@ -24,8 +25,15 @@
 #define MUTE_AMP()			P3_4 = 0
 #define UnMUTE_AMP()		P3_4 = 1
 
+extern UCHAR  EQ_Item;
+extern signed char CurrentVol;
+extern signed char SetBASS;
+extern signed char SetTREB;
+extern signed char SetBAL;
+extern bit isMute;
+
 void SC7313_initial(UCHAR channel);
-//void SC7313_Driver(UCHAR temp);
+void SC7313_Driver(UCHAR temp);
 void AudioMain(void);
 //void VolTimer(void);
 void EQ_Display(void);

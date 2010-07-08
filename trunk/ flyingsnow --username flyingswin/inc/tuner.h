@@ -47,7 +47,7 @@ enum STATUS_RADIO{Status_Idle, Status_Seek, Status_AST,Status_Single,Status_Scan
 extern UINT SaveFreq;
 extern enum BAND SaveBand;
 
-extern enum STATUS_RADIO DATA status;		
+extern enum STATUS_RADIO DATA TunerStatus;		
 
 /*-----------------------------------------------
 Function declaration

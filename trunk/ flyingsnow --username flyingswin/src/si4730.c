@@ -105,7 +105,7 @@ T_ERROR_OP Si4730_Wait_STC(void)
 }
 
 
-
+#if 0
 /**************************************
 
 Si47XX_Get_Rev(): read rev info: you should read out: 
@@ -144,7 +144,7 @@ T_ERROR_OP Si4730_Test(void)
 		
 	return OK;
 }
-
+#endif
 
 T_ERROR_OP Si4730_Power_Up(T_POWER_UP_TYPE power_up_type)
 /**

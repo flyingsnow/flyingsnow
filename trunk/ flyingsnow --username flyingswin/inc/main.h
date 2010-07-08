@@ -17,22 +17,23 @@
 
 typedef struct workmodestc { 
 	WORKMODE Current; 
-	WORKMODE Next; 
-	WORKMODE Last; 
+//	WORKMODE Next; 
+//	WORKMODE Last; 
 	WORKMODE Save; 
 } WorkmodeStruct; 
 
 typedef struct sysstuct { 
 	POWER_MODE	PowerMode; 
 	ACC_STATE	AccState;
-	WorkmodeStruct 	FWorkMode; 
+	WorkmodeStruct 	WorkMode; 
+	DISPLAY_STATE 	DispMode;
 } SYSStuct; 
  
 extern SYSStuct DATA System; 
 	
 
 
-extern KEY_EVENT	gKeyCode;
+extern KEY_EVENT	gKeyEvent;
 
 extern UCHAR 	t_halfsec;
 extern UCHAR 	t_min;

@@ -16,10 +16,20 @@
 #define SYSDIS 0X00 
 #define LCDON 0X06
 
+typedef enum	_DISPLAY_STATE
+{
+//	DISPLAY_STATE_IDLE = 0,			//do nothing	
+	DISPLAY_AUX = 0,			
+	DISPLAY_CLOCK,		//show time
+	DISPLAY_RADIO,		//show radio information
+	DISPLAY_AUDIO		//show audio set  information
+
+} DISPLAY_STATE;
 
  
 extern UCHAR CODE Num[10];
-extern UCHAR DispBuff[12];
+extern UCHAR DATA DispBuff[12];
+extern bit DispRefresh;
 
 
 
@@ -30,7 +40,5 @@ extern UCHAR DispBuff[12];
 
 ********************************************/
 void DisplayInit(void);
-
-void dispFrequency(enum BAND band,UINT freq);
 void DisplayMain(void); 
 #endif 

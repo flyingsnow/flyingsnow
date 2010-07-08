@@ -1,3 +1,6 @@
+#ifndef __I2C_H
+#define __I2C_H
+
 #include "main.h"
 
 
@@ -25,10 +28,5 @@ BOOL I2C2_write(UCHAR i2c_adr,  UCHAR *buffer, UCHAR NumtoWrite);
 
 //BOOL I2C1_read(UCHAR i2c_adr,UCHAR *buffer, UCHAR NumtoRead);
 BOOL I2C2_read(UCHAR i2c_adr,UCHAR *buffer, UCHAR NumtoRead);
-
-void I2C_delay(UCHAR delay_time);/* delay function used for I2C*/
-
-void I2C1_Start(void);
-
+#endif
 /******************* (C) COPYRIGHT 2009 SENLi *****END OF FILE****/
-
