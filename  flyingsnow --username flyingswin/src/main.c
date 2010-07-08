@@ -1,7 +1,6 @@
 #include "main.h"
 #include "interrupt.h"
 
-bit DispRefresh;
 bit Blink;
 
 UCHAR t_halfsec = 0;
@@ -9,7 +8,7 @@ UCHAR t_min = 0;
 UCHAR t_hour = 0;					//clock 
 
 SYSStuct DATA System; 
-KEY_EVENT	gKeyCode = IN_KEY_NONE;
+KEY_EVENT	gKeyEvent = IN_KEY_NONE;
 
 VOID  InitGpio(VOID)
 {
@@ -18,6 +17,47 @@ VOID  InitGpio(VOID)
 	P4CR |= 0x18; //p4.3 .4 output
 }
 
+
+VOID SysCommnKey(VOID)
+{
+
+
+	if(gKeyEvent != IN_KEY_NONE) {
+		switch(gKeyEvent) {
+		case IN_KEY_PWR_SP:
+				if(System.PowerMode == POWERMODE_POWEROFF)
+					System.PowerMode = POWERMODE_POWERONREQ;
+			break;
+
+		case IN_KEY_PWR_CP:
+				if(System.PowerMode == POWERMODE_POWERON)
+					System.PowerMode = POWERMODE_POWEROFFREQ;
+
+			break;
+			
+		case IN_KEY_MOD_SP:
+			if(System.PowerMode == POWERMODE_POWERON){
+				if(System.WorkMode.Current == WORKMODE_RADIO) {
+					SC7313_Driver(Channel_Aux);
+					Si4730_Power_Down();
+					TunerStatus = Status_Idle;
+					System.WorkMode.Current = WORKMODE_AUX;
+					System.DispMode = DISPLAY_AUX;
+				}
+				else {
+					SC7313_Driver(Channel_Radio);
+					Tuner_Init(SaveBand,SaveFreq);
+ 					TunerStatus = Status_Idle;
+					System.WorkMode.Current = WORKMODE_RADIO;
+					System.DispMode = DISPLAY_RADIO;
+				}		
+			}
+			break;
+		}
+	}
+
+
+}
 
 
 main()
@@ -35,20 +75,20 @@ main()
 	EA = 1;
 
 	PowerInit();
-//	POWER_ON();
-	while(1) {
-
+	AdcKeyScanInit();
+ 	while(1) {
 		ACC_Check();
 		if (System.AccState == ACC_ON) {
-			gKeyCode = AdcKeyEventGet();
+			gKeyEvent = AdcKeyEventGet();
+			SysCommnKey();
 			Power_main();
 		//	ClockMain();
 			if(System.PowerMode == POWERMODE_POWERON) {
-				switch(System.FWorkMode.Current) {
+				switch(System.WorkMode.Current) {
 				case WORKMODE_RADIO:
 					TunerMain();
 					break;
-
+					
 				case WORKMODE_AUX:
 				//	AuxMain();
 					break;

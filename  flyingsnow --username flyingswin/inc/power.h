@@ -12,7 +12,6 @@
 //Power manage adn work mode control
 typedef enum _WORKMODE
 {	
-	WORKMODE_IDLE,
 	WORKMODE_RADIO,			 
 	WORKMODE_AUX	 
 }WORKMODE;

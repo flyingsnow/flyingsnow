@@ -1,8 +1,19 @@
 #include "main.h"
-#include "string.h"
+//#include "string.h"
 //UCHAR DispRefresh;
+
+UCHAR CODE EQ_Buff[25] = { 0x8A,0xfA,0x24,0x60,0x00,	//VOL
+				 0x00,0xd6,0xd1,0x6D,0xd0,  //BAS
+				 0x00,0x9E,0x59,0x60,0x50,  //TRE
+				 0x00,0x8A,0xD1,0x6D,0xd0,	//BAL
+				 0x00,0xeC,0xd1,0x64,0x16   //FAD
+				};
+
+UCHAR CODE VOLUM[7] = {0x80,0xc4,0xc6,0xe6,0xe7,0xf7,0xf7};
 UCHAR CODE Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
-UCHAR  DispBuff[12];
+UCHAR DATA DispBuff[12];
+
+bit DispRefresh;
 
 
 VOID Start(VOID)
@@ -78,13 +89,6 @@ VOID Write_string(UCHAR addr,UCHAR *Data,UCHAR num)
 
 }
 
-
-
-
-
-
-
-
 /*---------------------------------------------------------------------
 Function name:	dispFrequency
 Input:			band,frequency
@@ -92,20 +96,12 @@ Output:			N/A
 Description:	displya  current frequency 
 ---------------------------------------------------------------------*/
 
-void dispFrequency(enum BAND band,UINT freq)
+VOID DispFreq(VOID)
 {
-
-
-	UCHAR i = 10;
 	UCHAR num1,num3,num2;//,num4;
-
-	while(i-- ) {
-		DispBuff[i+1]=0x00;	
-	}
 	
-	DispBuff[11] &= (UCHAR)~0x08;
 	
-	switch (band) {
+	switch (SaveBand) {
 		case Band_MW1:
 		case Band_MW2:				
 				//Radio Display
@@ -115,14 +111,14 @@ void dispFrequency(enum BAND band,UINT freq)
 				DispBuff[3] = 0x9C;
 
 				DispBuff[4] = Num[1];
-				if(band == Band_MW2)
+				if(SaveBand== Band_MW2)
 					DispBuff[4] = Num[2];
 				
-				num3 = (UCHAR)(freq /100) %10 ;
-				num2 = (UCHAR)((freq /10 ) % 10);
-				num1 = (UCHAR)(freq % 10);
+				num3 = (UCHAR)(SaveFreq/100) %10 ;
+				num2 = (UCHAR)((SaveFreq/10 ) % 10);
+				num1 = (UCHAR)(SaveFreq% 10);
 				
-				freq > 1000?(DispBuff[5] = Num[1]): (DispBuff[5] = 0x00);
+				SaveFreq > 1000?(DispBuff[5] = Num[1]): (DispBuff[5] = 0x00);
 				DispBuff[6] = Num[num3];
 				DispBuff[7] = Num[num2];
 				DispBuff[8] = Num[num1];
@@ -135,15 +131,15 @@ void dispFrequency(enum BAND band,UINT freq)
 				DispBuff[3] = 0xB2;
 				
 				DispBuff[4] = Num[1];
-				if(band == Band_FM2)
+				if(SaveBand== Band_FM2)
 					DispBuff[4] = Num[2];
-				if(band == Band_FM3)
+				if(SaveBand== Band_FM3)
 					DispBuff[4] = Num[3];
 				//Radio Display
-				num3 = (UCHAR)((freq /1000 ) % 10);
-				num2 = (UCHAR)((freq /100 ) % 10);
-				num1 = (UCHAR)((freq /10 ) % 10);
-				freq >= 10000?(DispBuff[5] = Num[1]): (DispBuff[5] = 0x00);
+				num3 = (UCHAR)((SaveFreq/1000 ) % 10);
+				num2 = (UCHAR)((SaveFreq/100 ) % 10);
+				num1 = (UCHAR)((SaveFreq/10 ) % 10);
+				SaveFreq >= 10000?(DispBuff[5] = Num[1]): (DispBuff[5] = 0x00);
 				DispBuff[6] = Num[num3];
 				DispBuff[7] = Num[num2];
 				DispBuff[8] = Num[num1];
@@ -153,68 +149,22 @@ void dispFrequency(enum BAND band,UINT freq)
 
 }
 
-
-
-
-
-
-static VOID
-DisplayAuxInfo(
-	VOID
-	)
-/*********************************************	
-	Function:		AuxDisplay	
-	Description:	  
-	Write/Modify:  
-	Time:	  
-*********************************************/	   
-{		
-	DispBuff[0]=0x00; 
-	DispBuff[1]=0x00;
-	DispBuff[2]=0x00;	
-	DispBuff[3]=0x00;	
-	DispBuff[4]=0x00;		
-	DispBuff[5]=0x7E;		//A
-	DispBuff[6]=0xEA;		//U
-	DispBuff[7]=0x00;		
-	DispBuff[8]=0x00;	
-	DispBuff[9]=0x00; 
-	DispBuff[10]=0x00;	 
-	DispBuff[11]&=0xf7;
-	
-//	if (MuteFalg) DispBuff[6] |= 0x01; 
-//	DispRefresh= 1;   
-}
-
-
-void DisplayClk(void)
+VOID DispClk(VOID)
 {	
-	UCHAR i = 10;
 	UCHAR h1,h2;
-	UCHAR m1,m2;
-
-	
-//	if( DispVol != 0)
-//		return;
+	UCHAR m1,m2;	
 		
  	h1 = t_hour/10;
 	h2 = t_hour%10;
   	m1 = t_min /10;
   	m2 = t_min %10;
-
-  	while(i--) DispBuff[i+1]=0x00;
-
-	//display vloum information
-	if (System.PowerMode == POWERMODE_POWEROFF )
-		DispBuff[11] = 0x00;
-	else
-		DispBuff[11] &= 0xF7; 
 	
 	DispBuff[9] = Num[m2];   
     DispBuff[8] = Num[m1];
-		
+	
     DispBuff[7] = Num[h2];		
     (h1 == 0) ?(DispBuff[6] &= 0x10):(DispBuff[6] |= Num[h1]);   
+	
     if(t_halfsec%2) 
 		DispBuff[0] = 0x00;
 	else		
@@ -234,10 +184,105 @@ void DisplayClk(void)
 		}
 //		DispBuff[11] |= 0x02;
 //	}
-//	if (MuteFalg) DispBuff[5] |= 0x10; 
    
    DispRefresh = 1;
 #endif
+}
+
+
+//Volum indication 
+static VOID DispVolum(VOID)
+{
+	if(isMute == 1) {
+		DispBuff[11] &= 0x80;
+		DispBuff[5] |= 0x10; 					
+	}	
+	else {
+		DispBuff[11] |= VOLUM[CurrentVol/5];
+		DispBuff[5] &= 0xEF;		 
+	}
+}
+
+
+VOID DispEQ(VOID)
+{	
+	UCHAR i,j;
+	
+	i = 10;
+	j = EQ_Item * 5;
+	
+	switch (EQ_Item) {
+		
+	case VOL_EQ:
+//	DispBuff[11] = VOLUM[CurrentVol/5];
+	
+		DispBuff[9] = 0x00;		
+		DispBuff[8] = Num[CurrentVol%10]; 
+		(CurrentVol < 10 )? (DispBuff[7]=0x00):(DispBuff[7]= Num[CurrentVol/10]);	
+		
+		for(i = 0; i < 5; i++)
+			DispBuff[5-i] = EQ_Buff[j+i];
+	
+		break;
+
+	case BAS_EQ:
+		if (SetBASS >= 7 ) {
+			DispBuff[8] = Num[SetBASS - 7];
+			DispBuff[7] = 0x00;
+		}
+		else {					
+			DispBuff[8] = Num[7 - SetBASS];
+			DispBuff[7] = 0x04;
+		}
+		for(i = 0; i < 5; i++)
+			DispBuff[5-i] = EQ_Buff[j+i];
+		break;
+
+	case TRE_EQ:
+		if (SetTREB >= 7 ) {
+			DispBuff[8] = Num[SetTREB - 7];
+			DispBuff[7] = 0x00;
+		}
+		else {
+			
+			DispBuff[8] = Num[7 - SetTREB];
+			DispBuff[7] = 0x04;
+		}
+		for(i = 0; i < 5; i++)
+			DispBuff[5-i] = EQ_Buff[j+i];
+	
+		break;
+		
+	case BAL_EQ:
+		
+		if (SetBAL >= 9 ) {
+			DispBuff[9] = Num[SetBAL - 9];
+			DispBuff[8] = 0x04;
+			DispBuff[7] = 0x04;	
+			if (SetBAL == 9) {
+				DispBuff[9] = 0x04;
+				DispBuff[8] = Num[SetBAL - 9];
+			}					
+		}
+		else {					
+			DispBuff[9] = 0x04;
+			DispBuff[8] = 0x04;
+			DispBuff[7] = Num[9 - SetBAL];
+		}
+		
+		for(i = 0; i < 5; i++)
+			DispBuff[5-i] = EQ_Buff[j+i];
+	
+		break;
+//	case FAD_EQ:
+//		break;
+	
+	default:
+		break;
+		
+	break;
+	}	
+
 }
 
 /*******************************************
@@ -259,23 +304,46 @@ VOID DisplayInit()
 	for(i = 8;i <32 ;i++)
 		Write_LCD(i,0x0);
 	//	DispBuff[i] = 0x00;
-	memset(DispBuff,0x00,12);
+//	memset(DispBuff,0x00,12);
 }
 
 
 VOID DisplayMain(VOID)
 {	
-	if(System.PowerMode == POWERMODE_POWERON) {
-		if(System.FWorkMode.Current == WORKMODE_RADIO)
-			dispFrequency(SaveBand,SaveFreq);
-		if (System.FWorkMode.Current == WORKMODE_AUX)
-			DisplayAuxInfo();
-	}
-	else {
-		DisplayClk();
-	}
-	Write_string(8,DispBuff,12);
+	UCHAR i = 11;
 	
+	if(DispRefresh) { 
+		
+		while(i-- ) {
+			DispBuff[i]=0x00; 
+		}
+		
+		switch(System.DispMode) {
+		case DISPLAY_CLOCK:
+			DispClk();
+			break;
+
+		case DISPLAY_RADIO:
+			DispFreq();
+			if(TunerStatus == Status_Idle) {
+				//disp stereo bit	
+			}
+			break;
+
+		case DISPLAY_AUX:
+			DispBuff[5]=0x7E;		//A
+			DispBuff[6]=0xEA;		//U 
+			break;
+
+		case DISPLAY_AUDIO:
+			DispEQ();
+			break;
+		}
+		if(System.PowerMode == POWERMODE_POWERON)
+			DispVolum();
+		
+		Write_string(8,DispBuff,12);
+
+		DispRefresh = 0;
+	}
 }
-
-
