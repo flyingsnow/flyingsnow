@@ -27,6 +27,17 @@ VOID SysCommnKey(VOID)
 		case IN_KEY_PWR_SP:
 				if(System.PowerMode == POWERMODE_POWEROFF)
 					System.PowerMode = POWERMODE_POWERONREQ;
+				else {
+					if(isMute) {
+//						UnMUTE_AMP();
+						isMute = 0;
+					}
+					else {
+//						MUTE_AMP();
+						isMute = 1;
+					}
+
+				}
 			break;
 
 		case IN_KEY_PWR_CP:
@@ -45,13 +56,14 @@ VOID SysCommnKey(VOID)
 					System.DispMode = DISPLAY_AUX;
 				}
 				else {
-					SC7313_Driver(Channel_Radio);
 					Tuner_Init(SaveBand,SaveFreq);
  					TunerStatus = Status_Idle;
 					System.WorkMode.Current = WORKMODE_RADIO;
 					System.DispMode = DISPLAY_RADIO;
+					SC7313_Driver(Channel_Radio);
 				}		
 			}
+			isMute = FALSE;
 			break;
 		}
 	}

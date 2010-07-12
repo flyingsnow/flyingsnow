@@ -9,7 +9,7 @@
 **********************************************************
 */
 #define 	ADC_KEY_SCAN_TIME		4
-#define 	ADC_KEY_JTTER_TIME		12
+#define 	ADC_KEY_JTTER_TIME		8
 #define 	ADC_KEY_CP_TIME			200
 #define 	ADC_KEY_HOLD_TIME		20
 
@@ -24,7 +24,7 @@
 *					LOCAL VARIABLE
 **********************************************************
 */
-UCHAR   DATA		PreKeyIndex = 0;
+//UCHAR   DATA		PreKeyIndex = 0;
 UCHAR	DATA		AdcKeyWaitTimer;
 UCHAR	DATA		AdcKeyScanTimer;
 ADC_KEY_STATE DATA  AdcKeyState;
@@ -58,6 +58,8 @@ BYTE CODE AdcKeyEvent[][4] =
 	{IN_KEY_P1_SP,			IN_KEY_P1_CP,		IN_KEY_NONE,	IN_KEY_NONE 		}
 };	
 
+//WORD  CODE	KeyValueTable[9] = {780,530,465,375,280,200,140,50,0};
+WORD  CODE	KeyValueTable[9] = {800,525,460,375,285,205,125,40,0};
 
 /*
 **********************************************************
@@ -96,13 +98,12 @@ AdcChannelKeyGet(
 	BYTE Channel
 	)							
 {
-	WORD  CODE	KeyValueTable[] = {780,650,550,450,350,250,150,50,0};
 	UINT    Val;
 	BYTE	KeyIndex,i;
 
 #if 1
 //		UINT  temph;
-		UCHAR templ;
+		UCHAR templ = 15;
 		UCHAR wait_conuter;
 		
 //		ADCON |= 0x80;		//enable adc
@@ -112,12 +113,13 @@ AdcChannelKeyGet(
 		ADCON |= 0x01;					//start AD convert. 
 
 		EA = 0;
+		
+		while(templ--)
+			;
 		/* Waiting for AD convert finished	  */
 		while((ADCON & 0x01)&& wait_conuter < 0x80) //loop_counter limit should guarantee at least 10us
 			wait_conuter++; 
 	
-	//	while(templ--)
-	//		;
 		
 		Val = ADDH;		//Read MSB
 		templ = ADDL;	//Read LSB
@@ -129,16 +131,16 @@ AdcChannelKeyGet(
 #else 
 	Val = AdcReadChannel(Channel);	
 #endif
-	if (Val >= 800)	{
+	if (Val >= 700)	{
 		KeyIndex = IN_KEY_NONE;
 		return KeyIndex;
 	}
 
-	for(i = 0; i <= 9; i++) {
+	for(i = 0; i <= 8; i++) {
 		if(Val >= KeyValueTable[i])
 			break;
 	}
-	if(i >= 9)
+	if(i > 8)
 			KeyIndex = IN_KEY_NONE;
 		else
 			KeyIndex = i;
@@ -160,9 +162,9 @@ AdcChannelKeyGet(
 KEY_EVENT
 AdcKeyEventGet(VOID)				
 {
-//	static 	 UINT DATA PreKeyIndex = 0;
-	BYTE			KeyIndex;
+	static 	 UINT DATA PreKeyIndex = 0;
 	KEY_EVENT		event = IN_KEY_NONE;
+	UCHAR	DATA		CurKeyIndex;
 
 //	DBG(("AdcKeyEventGet*******\n"));
 	if (AdcKeyScanTimer > 0)
@@ -172,15 +174,17 @@ AdcKeyEventGet(VOID)
 	AdcKeyScanTimer = ADC_KEY_SCAN_TIME;
 	
 //	AdcOpen(12);
-	KeyIndex = AdcChannelKeyGet(1);
-	if(KeyIndex == 0)
+	CurKeyIndex = AdcChannelKeyGet(1);
+#if 1
+	if(CurKeyIndex == 0)
 	{
-		KeyIndex = AdcChannelKeyGet(2);
-		if(KeyIndex > 0)
+		CurKeyIndex = AdcChannelKeyGet(2);
+		if(CurKeyIndex > 0)
 		{
-			KeyIndex += ADC_KEY_COUNT;
+			CurKeyIndex += ADC_KEY_COUNT;
 		}
 	}
+#endif
 //	AdcClose();
 	
 //	DBG(("PreKeyIndex:%4d, ", (WORD)PreKeyIndex));
@@ -188,18 +192,18 @@ AdcKeyEventGet(VOID)
 	switch(AdcKeyState)
 	{
 		case ADC_KEY_STATE_IDLE:
-			if(KeyIndex == 0)
+			if(CurKeyIndex == 0)
 			{
 				return IN_KEY_NONE;
 			}
 
-			PreKeyIndex = KeyIndex;
+			PreKeyIndex = CurKeyIndex;
 			AdcKeyWaitTimer = ADC_KEY_JTTER_TIME;
 //			DBG(("GOTO JITTER!\n"));
 			AdcKeyState = ADC_KEY_STATE_JITTER;
 				
 		case ADC_KEY_STATE_JITTER:
-			if(PreKeyIndex != KeyIndex)
+			if(PreKeyIndex != CurKeyIndex)
 			{
 //				DBG(("GOTO IDLE Because jitter!\n"));
 				AdcKeyState = ADC_KEY_STATE_IDLE;
@@ -213,7 +217,7 @@ AdcKeyEventGet(VOID)
 			break;
 
 		case ADC_KEY_STATE_PRESS_DOWN:
-			if(PreKeyIndex != KeyIndex)
+			if(PreKeyIndex != CurKeyIndex)
 			{
 				//return key sp value
 //				DBG(("ADC KEY SP!**********\n"));
@@ -232,7 +236,7 @@ AdcKeyEventGet(VOID)
 			break;
 
 		case ADC_KEY_STATE_CP:
-			if(PreKeyIndex != KeyIndex)
+			if(PreKeyIndex != CurKeyIndex)
 			{
 				//return key cp value
 //				DBG(("ADC KEY CPR!****************************************************\n"));

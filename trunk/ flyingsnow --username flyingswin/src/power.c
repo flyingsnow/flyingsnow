@@ -19,7 +19,7 @@ void PowerInit(void)
 	System.PowerMode = POWERMODE_POWEROFF;
 	System.WorkMode.Save = WORKMODE_RADIO;
 	System.WorkMode.Current = WORKMODE_RADIO;
-	System.DispMode = DISPLAY_AUX;
+	System.DispMode = DISPLAY_CLOCK;
 }
 
 
@@ -98,17 +98,20 @@ void Power_main(void)
 		 //here power on the tuner/audioprocessor 			 
 		 POWER_ON();				
 		 
-		 if (System.WorkMode.Save == WORKMODE_AUX) 
- 			 System.WorkMode.Current = System.WorkMode.Save;
- 		 else 
- 		 	System.WorkMode.Current = WORKMODE_RADIO;
-
-	     if(System.WorkMode.Current == WORKMODE_AUX)  {
+	     if(System.WorkMode.Save == WORKMODE_AUX)  {
+			System.WorkMode.Current = WORKMODE_AUX;
+			System.DispMode = DISPLAY_AUX;
+			DispRefresh = 1;
+		 	DisplayMain();
 			WaitMs(500);
 			SC7313_initial(Channel_Aux);
 		 }
-		 else {
-			 WaitMs(200);
+		 else {		 	
+			System.DispMode = DISPLAY_RADIO;
+ 		 	System.WorkMode.Current = WORKMODE_RADIO;
+			DispRefresh = 1;
+		 	DisplayMain();
+			WaitMs(200);
 			 //Here boot the tuner...	 
 //				 while ( Si4730_Test() != OK ) {
 				 Tuner_Init(SaveBand,SaveFreq);	
@@ -125,17 +128,18 @@ void Power_main(void)
 		 break;   
 		 
 	case POWERMODE_POWEROFFREQ:			
- 		 MUTE_AMP();			 
-		 WaitMs(200);
-		 Si4730_Power_Down();			 
-		 POWER_OFF();							//set power-on pin low
-		 TunerStatus = Status_Idle;							//reset radio status 
-		 System.PowerMode = POWERMODE_POWEROFF;
-		 //Modify by Hwt Dec,22,2009
-		 System.WorkMode.Save = System.WorkMode.Current;
-		 
-		 
-		 break;   
+		System.DispMode = DISPLAY_CLOCK;
+		DispRefresh = 1;
+		DisplayMain();
+		MUTE_AMP();			 
+		WaitMs(200);
+		Si4730_Power_Down();			 
+		POWER_OFF();							//set power-on pin low
+		TunerStatus = Status_Idle;							//reset radio status 
+		System.PowerMode = POWERMODE_POWEROFF;
+		//Modify by Hwt Dec,22,2009
+		System.WorkMode.Save = System.WorkMode.Current;		 
+		break;   
 	}	
 }	
 

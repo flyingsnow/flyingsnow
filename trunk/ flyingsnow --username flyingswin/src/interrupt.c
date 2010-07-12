@@ -56,8 +56,8 @@ Timer3(void)				interrupt 11
 		}
 	}   
 
-	if(!DispRefresh)
-		DispRefresh = 1;
+	if(VolDispTimer > 0)
+		VolDispTimer--;
 	
 	EA = 1;
 }
@@ -70,6 +70,8 @@ void
 Timer4(void)			interrupt 13		 				
 {
 	EA = 0;
+
+	DispRefresh = 1;
 #if 0
  	if(!++(*((BYTE*)(&gSysTick) + 3)))    
  	{
