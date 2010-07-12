@@ -55,7 +55,7 @@ Function declaration
 void Tuner_Init(enum BAND band,UINT freq);
 //void Tuner_Seek(enum DIRECTION direction, UCHAR ast, UCHAR singlestep);
 void Tuner_BandSwitch(void);
-void Tuner_SaveCurrentStation(UINT freq, enum PRESET preset);
+void Tuner_SaveCurrentStation(enum PRESET preset);
 void Tuner_TunetoPreset(enum PRESET preset);
 void TunerMain(void);
 enum PRESET Tuner_IsPreset (void);

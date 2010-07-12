@@ -9,7 +9,7 @@ UCHAR CODE EQ_Buff[25] = { 0x8A,0xfA,0x24,0x60,0x00,	//VOL
 				 0x00,0xeC,0xd1,0x64,0x16   //FAD
 				};
 
-UCHAR CODE VOLUM[7] = {0x80,0xc4,0xc6,0xe6,0xe7,0xf7,0xf7};
+UCHAR CODE VolMap[7] = {0x80,0xc4,0xc6,0xe6,0xe7,0xf7,0xf7};
 UCHAR CODE Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
 UCHAR DATA DispBuff[12];
 
@@ -194,12 +194,12 @@ VOID DispClk(VOID)
 static VOID DispVolum(VOID)
 {
 	if(isMute == 1) {
-		DispBuff[11] &= 0x80;
-		DispBuff[5] |= 0x10; 					
+		DispBuff[11] = 0x0;
+		DispBuff[6] |= 0x01; 					
 	}	
 	else {
-		DispBuff[11] |= VOLUM[CurrentVol/5];
-		DispBuff[5] &= 0xEF;		 
+		DispBuff[11] = VolMap[CurrentVol/5];
+		DispBuff[6] &= 0xFE;		 
 	}
 }
 
@@ -214,7 +214,7 @@ VOID DispEQ(VOID)
 	switch (EQ_Item) {
 		
 	case VOL_EQ:
-//	DispBuff[11] = VOLUM[CurrentVol/5];
+//	DispBuff[11] = VolMap[CurrentVol/5];
 	
 		DispBuff[9] = 0x00;		
 		DispBuff[8] = Num[CurrentVol%10]; 
@@ -311,7 +311,6 @@ VOID DisplayInit()
 VOID DisplayMain(VOID)
 {	
 	UCHAR i = 11;
-	
 	if(DispRefresh) { 
 		
 		while(i-- ) {
@@ -341,6 +340,8 @@ VOID DisplayMain(VOID)
 		}
 		if(System.PowerMode == POWERMODE_POWERON)
 			DispVolum();
+		else 
+			DispBuff[11] = 0x0;
 		
 		Write_string(8,DispBuff,12);
 

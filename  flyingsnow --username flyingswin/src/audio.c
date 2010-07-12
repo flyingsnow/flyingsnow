@@ -10,7 +10,8 @@ signed char SetBAL = 7;
 //signed char SetFAD = 9;
 
 bit isMute;
-UCHAR DispVol;
+bit MuteState;
+UCHAR VolDispTimer;
 bit  ChangeVolFlag;
 
 
@@ -71,6 +72,10 @@ void SC7313_EQ(
 	}	
 	
 	SC7313_Driver(SetVaule);
+	
+	System.DispMode = DISPLAY_AUDIO;
+	ChangeVolFlag = TRUE;
+	VolDispTimer = 10;
 }
 
 
@@ -120,12 +125,25 @@ void SC7313_initial(UCHAR channel)
 void AudioMain(void)
 {
 	UCHAR eq_temp;
+
+
+	if (isMute != MuteState) {	
+		if(isMute == TRUE) {
+			MUTE_AMP(); 
+		}
+		else { 
+			UnMUTE_AMP();
+		}
+		MuteState = isMute;
+	}
 	
 	if (gKeyEvent != IN_KEY_NONE) {
 		switch(gKeyEvent) { 				
 			
 		case IN_KEY_SEL_SP:
 			ChangeVolFlag = TRUE;
+			VolDispTimer = 10;
+			System.DispMode = DISPLAY_AUDIO;
 			if (EQ_Item == BAL_EQ)
 				EQ_Item = VOL_EQ;
 			else
@@ -143,30 +161,33 @@ void AudioMain(void)
 					eq_temp = MINVOL - CurrentVol*2;
 				break;
 
-			case BAS_EQ:					
-				if(++SetBASS > BASS_MAX)
-					SetBASS= BASS_MAX;					
-				eq_temp = SetBASS;
-				break;
+		case BAS_EQ:					
+			if(++SetBASS > BASS_MAX)
+				SetBASS= BASS_MAX;					
+			eq_temp = SetBASS;
+			break;
 
-			case TRE_EQ:
-				if(++SetTREB > TREB_MAX)
-					SetTREB = TREB_MAX;	
-					eq_temp = SetTREB;
-				break;
-			case BAL_EQ:					
-				if(++SetBAL > BAL_MAX)
-					SetBAL = BAL_MAX;	
-					eq_temp = SetBAL;
-				break;
+		case TRE_EQ:
+			if(++SetTREB > TREB_MAX)
+				SetTREB = TREB_MAX;	
+				eq_temp = SetTREB;
+			break;
+		case BAL_EQ:					
+			if(++SetBAL > BAL_MAX)
+				SetBAL = BAL_MAX;	
+				eq_temp = SetBAL;
+			break;
 				
 		//	case FAD_EQ:
 		//		break;					
 		}
 		SC7313_EQ(EQ_Item,eq_temp);			
-		ChangeVolFlag = TRUE;		
-		if (isMute == TRUE)
-			isMute = FALSE;			
+//		ChangeVolFlag = TRUE;	
+//		VolDispTimer = 10;			//display volum 5s 
+		if (isMute == TRUE) {
+			isMute = FALSE;	
+//			UnMUTE_AMP();
+		}
 		break;
 			
 		case IN_KEY_VOL_SUB:			
@@ -182,36 +203,50 @@ void AudioMain(void)
 				}
 				break;
 				
-			case BAS_EQ:					
-				if(--SetBASS < 1)
-					SetBASS = 0;					
-				eq_temp = SetBASS;
-				break;
-		
-			case TRE_EQ:
-				if(--SetTREB < 1 )
-					SetTREB = 0;				
-				eq_temp = SetTREB;
-				break;
-				
-			case BAL_EQ:					
-				if(--SetBAL < 1)
-					SetBAL = 0; 				
-				eq_temp = SetBAL;
-				break;
+		case BAS_EQ:					
+			if(--SetBASS < 1)
+				SetBASS = 0;					
+			eq_temp = SetBASS;
+			break;
+	
+		case TRE_EQ:
+			if(--SetTREB < 1 )
+				SetTREB = 0;				
+			eq_temp = SetTREB;
+			break;
+			
+		case BAL_EQ:					
+			if(--SetBAL < 1)
+				SetBAL = 0; 				
+			eq_temp = SetBAL;
+			break;
 				
 		//	case FAD_EQ:
 		//		break;
 		}			
 		SC7313_EQ(EQ_Item,eq_temp);			
-		ChangeVolFlag = TRUE;
-		if (isMute == TRUE)
-			isMute = FALSE;			
-		break;
-		
-	default:		
-		break;
-	
-	}
+//		ChangeVolFlag = TRUE;
+//		VolDispTimer = 10;
+		if (isMute == TRUE) {
+			isMute = FALSE;	
+//			UnMUTE_AMP();
 		}
+			break;
+		
+		default:
+			if(VolDispTimer) {
+				EQ_Item = VOL_EQ;
+				VolDispTimer = 0;
+			}
+			break;	
+	}
+	}
+
+	if(VolDispTimer == 0 && ChangeVolFlag == TRUE) {
+		EQ_Item = VOL_EQ;
+		if(System.WorkMode.Current == WORKMODE_RADIO)
+			System.DispMode = DISPLAY_RADIO;
+		else 
+			System.DispMode = DISPLAY_AUX;	
+	}
 }

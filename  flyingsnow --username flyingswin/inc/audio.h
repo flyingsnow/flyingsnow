@@ -31,6 +31,8 @@ extern signed char SetBASS;
 extern signed char SetTREB;
 extern signed char SetBAL;
 extern bit isMute;
+extern UCHAR VolDispTimer;
+
 
 void SC7313_initial(UCHAR channel);
 void SC7313_Driver(UCHAR temp);

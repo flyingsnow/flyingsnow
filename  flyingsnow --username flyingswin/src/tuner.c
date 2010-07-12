@@ -21,6 +21,7 @@ UINT  Preset_Freq[2][PresetNum] =  {
 	{9030,9810,10610,9010,9800,10600}
 };
 
+
 /*---------------------------------------------
 Function Name:	Tuner_Init
 Input:			Band,frequency
@@ -42,8 +43,10 @@ void Tuner_Init(enum BAND band,UINT freq)
 		Si4730_Power_Up(AM_RECEIVER);
 		break;
 	}
- 
+ 	
+	Si4730_HardMute(TRUE);
 	Si4730_Tune_Freq(band,freq);
+	Si4730_HardMute(FALSE);
 }
 
 
@@ -62,24 +65,33 @@ void Tuner_BandSwitch(void)
 	
 //	MUTE_AMP();
 	Si4730_HardMute(TRUE);
-	TunerMuteFlag = 1;
-	LastBandFreq[CurrentBand] = CurrentFreq;
+	TunerMuteFlag = TRUE;
+	Si4730_Power_Down();
+//	LastBandFreq[CurrentBand] = CurrentFreq;
 #if 0	
 	if (CurrentBand == Band_FM3)
 		band = Band_MW1;
 	else
 		band = CurrentBand + 1;
 #endif 
-	if(CurrentBand > 1) 
+	if(CurrentBand > 1) {
+		LastBandFreq[1] = CurrentFreq;
 		band = Band_MW1;
-	else
+		Tuner_Init(band, LastBandFreq[0]); 
+		CurrentFreq = LastBandFreq[0];	
+
+	}
+	else {
+		LastBandFreq[0] = CurrentFreq;
 		band = Band_FM1;
+		Tuner_Init(band, LastBandFreq[1]); 
+		CurrentFreq = LastBandFreq[1];	
+
+	}
 	
 
-	Tuner_Init(band, LastBandFreq[band]);
-
+//	Tuner_Init(band, LastBandFreq[band]);
 	CurrentBand = band;
-	CurrentFreq = LastBandFreq[band];	
 	SaveBand = CurrentBand;
 	SaveFreq = CurrentFreq; 
 	Si4730_HardMute(FALSE);		
@@ -124,6 +136,30 @@ void Tuner_TunetoPreset(enum PRESET preset)
  //	PresetFlag = (u8)(preset);
 }
 
+
+/*---------------------------------------------------------------------
+Function name:	Tuner_SaveCurrentStation
+Input:			frequency,preset
+Output:			N/A
+Description:	Save current frequency to preset station
+---------------------------------------------------------------------*/
+void Tuner_SaveCurrentStation(enum PRESET preset)
+{	
+	switch(CurrentBand) {
+	case Band_MW1:
+	case Band_MW2:	
+		Preset_Freq[0][preset] = CurrentFreq;
+					break;
+	case Band_FM1:
+	case Band_FM2:
+	case Band_FM3:	
+		Preset_Freq[1][preset] = CurrentFreq;
+		break;
+	}
+		//Tuner_TunetoPreset(preset);
+		//PresetFlag = preset;
+}
+
 #if 1
 
  
@@ -140,7 +176,7 @@ void Tuner_Seek(bit direction, bit ast, bit singlestep)
 {	
 	
 	UINT Rssi;	
-	UCHAR j=0;
+	UCHAR j;
 	
 	static UCHAR i=0;						//Total numbers of preset stations
 	static UINT step,max,min;
@@ -178,9 +214,11 @@ void Tuner_Seek(bit direction, bit ast, bit singlestep)
 							break;
 
 			}
-#if AST_ON			
-			while(preset_level[j])							//Clear preset stations buffer
-				preset_level[j++] = 0;
+#if AST_ON	
+			if (ast == TRUE) {
+				for(j=0; j<6; j++)							//Clear preset stations buffer
+					preset_level[j] = 0;
+			}
 			//PresetFlag = FALSE;
 			stepnum = 0;
 			i = 0;
@@ -247,12 +285,14 @@ void Tuner_Seek(bit direction, bit ast, bit singlestep)
 				i++;
 				if(i > 6) {
 					for(j = 0; j < PresetNum; j++){
-						if(Rssi > preset_level[j])
+						if(Rssi > preset_level[j]) {
 							preset_level[j] = Rssi;
 						    if(CurrentBand == Band_MW1 || CurrentBand == Band_MW2)
 								Preset_Freq[0][j] = CurrentFreq;					
 							else 
 								Preset_Freq[1][j] = CurrentFreq;
+							break;
+						}
 					}
 				}				
 				SeekState = Seek_Request;
@@ -280,43 +320,44 @@ void TunerMain(void)
 		switch(gKeyEvent) {
 
 		case IN_KEY_NEXT_SP:
-			direction = 1;
-			ast = 0;
-			singlestep = 0;
+			direction = TRUE;
+			ast = FALSE;
+			singlestep = FALSE;
 			TunerStatus = Status_Seek;
 			SeekState = Seek_Configure;
 			break;
 
 		case IN_KEY_NEXT_CP:
-			direction = 1;
-			ast = 0;
-			singlestep = 1;
+			direction = TRUE;
+			ast = FALSE;
+			singlestep = TRUE;
 			TunerStatus = Status_Single;
 			SeekState = Seek_Configure; 			
 
 			break;
 
 		case IN_KEY_PRE_SP:
-			direction = 0;
-			ast = 0;
-			singlestep = 0;
+			direction = FALSE;
+			ast = FALSE;
+			singlestep = FALSE;
 			TunerStatus = Status_Seek;
 			SeekState = Seek_Configure; 			
 			break;
 
 		case IN_KEY_PRE_CP:
-			direction = 0;
-			ast = 0;
-			singlestep = 1;
+			direction = FALSE;
+			ast = FALSE;
+			singlestep = TRUE;
 			TunerStatus = Status_Single;
 			SeekState = Seek_Configure; 			
 
 			break;
 
-		case IN_KEY_BAND_SP:		
+		case IN_KEY_BAND_SP:
 			Tuner_BandSwitch();
 			TunerStatus = Status_Idle;
-			SeekState = Seek_Configure; 			
+			SeekState = Seek_Configure;
+			isMute = FALSE;
 			break;
 
 		case IN_KEY_AST_SP:
@@ -324,11 +365,12 @@ void TunerMain(void)
 			break;
 
 		case IN_KEY_AST_CP:
-			direction = 1;
-			ast = 1;
-			singlestep = 0;
+			direction = TRUE;
+			ast = TRUE;
+			singlestep = FALSE;
 			TunerStatus = Status_AST;
-			SeekState = Seek_Configure; 	
+			SeekState = Seek_Configure; 
+			isMute = FALSE;
 			break;
 
 		case IN_KEY_P1_SP:
@@ -339,7 +381,8 @@ void TunerMain(void)
 		case IN_KEY_P6_SP:		
 			TunerStatus = Status_Idle;
 			SeekState = Seek_Configure; 	
-			Tuner_TunetoPreset(gKeyEvent - KEY_EVENT_BASE_ADDR);
+			Tuner_TunetoPreset(gKeyEvent - 0xA1);
+			isMute = FALSE;
 			break;
 
 		case IN_KEY_P1_CP:
@@ -350,20 +393,24 @@ void TunerMain(void)
 		case IN_KEY_P6_CP:
 			TunerStatus = Status_Idle;
 			SeekState = Seek_Configure; 	
-			Tuner_TunetoPreset(gKeyEvent - IN_KEY_P6_SP);
+			Tuner_SaveCurrentStation(gKeyEvent - 0xA6);
+			isMute = FALSE;
 			break;
 		}
 	}
 	if( TunerStatus == Status_Idle) {
-		if(TunerMuteFlag == 1)	{		
-			Si4730_HardMute(0);
-			TunerMuteFlag = 0;
+		if(TunerMuteFlag == TRUE)	{		
+			Si4730_HardMute(FALSE);
+			TunerMuteFlag = FALSE;
 		}
 	}
 	else if(TunerStatus != Status_Scan) {
 		Tuner_Seek(direction,ast,singlestep);
-		Si4730_HardMute(1);
-		TunerMuteFlag = 1;
+			if(TunerMuteFlag == FALSE)	{		
+				Si4730_HardMute(TRUE);
+				TunerMuteFlag = TRUE;
+			}
+		isMute = FALSE;
 		}
 
 #if AST_ON	//here handle preset radio station scan 
