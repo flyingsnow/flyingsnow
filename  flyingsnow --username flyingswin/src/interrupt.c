@@ -1,5 +1,6 @@
 #include "main.h"
 
+extern UCHAR singlestepTimer;	//keep singlesteip tuner state 5s
 //
 // System tick 5ms initilization.
 //
@@ -58,6 +59,9 @@ Timer3(void)				interrupt 11
 
 	if(VolDispTimer > 0)
 		VolDispTimer--;
+
+	if(singlestepTimer > 0)
+		singlestepTimer--;
 	
 	EA = 1;
 }

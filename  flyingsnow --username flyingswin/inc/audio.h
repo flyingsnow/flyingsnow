@@ -15,7 +15,7 @@
 #define FAD_EQ		4
 
 #define MAXVOL		0
-#define DEFVOL		16	
+#define DEFVOL		10	
 #define MINVOL		63
 
 

@@ -29,11 +29,9 @@ VOID SysCommnKey(VOID)
 					System.PowerMode = POWERMODE_POWERONREQ;
 				else {
 					if(isMute) {
-//						UnMUTE_AMP();
 						isMute = 0;
 					}
 					else {
-//						MUTE_AMP();
 						isMute = 1;
 					}
 
@@ -120,12 +118,12 @@ WaitMs(
 	ULONG ms										//Wait ms counter value
 	)	
 {
-	UINT us = 500;
+	UCHAR us = 0xFF;
 	while (ms--)
 	{
 		while(us--)
 			;
-		us = 500;
+		us = 0xFF;
 	}
 }
 

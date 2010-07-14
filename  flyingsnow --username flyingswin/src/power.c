@@ -49,6 +49,7 @@ void ACC_Check(void)
 			WaitUs(0xff);
 			InitAdc();
 			DisplayInit();
+			DisplayInit();
 			System.AccState = ACC_ON;	
 		}
 		break;
@@ -103,7 +104,7 @@ void Power_main(void)
 			System.DispMode = DISPLAY_AUX;
 			DispRefresh = 1;
 		 	DisplayMain();
-			WaitMs(500);
+			WaitMs(100);
 			SC7313_initial(Channel_Aux);
 		 }
 		 else {		 	
@@ -111,7 +112,7 @@ void Power_main(void)
  		 	System.WorkMode.Current = WORKMODE_RADIO;
 			DispRefresh = 1;
 		 	DisplayMain();
-			WaitMs(200);
+			WaitMs(100);
 			 //Here boot the tuner...	 
 //				 while ( Si4730_Test() != OK ) {
 				 Tuner_Init(SaveBand,SaveFreq);	
@@ -132,7 +133,7 @@ void Power_main(void)
 		DispRefresh = 1;
 		DisplayMain();
 		MUTE_AMP();			 
-		WaitMs(200);
+		WaitMs(400);
 		Si4730_Power_Down();			 
 		POWER_OFF();							//set power-on pin low
 		TunerStatus = Status_Idle;							//reset radio status 
