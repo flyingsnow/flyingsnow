@@ -15,6 +15,7 @@ UCHAR DATA DispBuff[12];
 
 bit DispRefresh;
 
+extern UCHAR PresetFlag;
 
 VOID Start(VOID)
 {
@@ -196,6 +197,7 @@ static VOID DispVolum(VOID)
 	if(isMute == 1) {
 		DispBuff[11] = 0x0;
 		DispBuff[6] |= 0x01; 					
+		DispBuff[0] &= 0xE0;
 	}	
 	else {
 		DispBuff[11] = VolMap[CurrentVol/5];
@@ -255,19 +257,19 @@ VOID DispEQ(VOID)
 		
 	case BAL_EQ:
 		
-		if (SetBAL >= 9 ) {
-			DispBuff[9] = Num[SetBAL - 9];
+		if (SetBAL >= 7 ) {
+			DispBuff[9] = Num[SetBAL - 7];
 			DispBuff[8] = 0x04;
 			DispBuff[7] = 0x04;	
-			if (SetBAL == 9) {
+			if (SetBAL == 7) {
 				DispBuff[9] = 0x04;
-				DispBuff[8] = Num[SetBAL - 9];
+				DispBuff[8] = Num[SetBAL - 7];
 			}					
 		}
 		else {					
 			DispBuff[9] = 0x04;
 			DispBuff[8] = 0x04;
-			DispBuff[7] = Num[9 - SetBAL];
+			DispBuff[7] = Num[7 - SetBAL];
 		}
 		
 		for(i = 0; i < 5; i++)
@@ -326,6 +328,18 @@ VOID DisplayMain(VOID)
 			DispFreq();
 			if(TunerStatus == Status_Idle) {
 				//disp stereo bit	
+				if(Si4730_RSQ_Status(SaveBand,Read_PILOT))
+					DispBuff[0] |= 0x10;
+				else 
+					DispBuff[0] &= 0xE0;
+
+				if(Tuner_IsPreset() >= PresetNum) 
+					DispBuff[10] = 0x00;
+				else					
+					DispBuff[10] = Num[PresetFlag+1];				
+			}
+			else {				
+				DispBuff[11] &= 0xF7;
 			}
 			break;
 

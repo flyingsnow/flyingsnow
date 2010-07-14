@@ -307,7 +307,6 @@ T_ERROR_OP Si4730_Tune_Freq(UCHAR band,UINT freq)
 		;
 
 #endif
-//	System.DispMode.Current = DISPMODE_RADIO;			//Sep 22,2009
 	return OK;
 
 }
@@ -400,6 +399,3 @@ T_ERROR_OP Si4730_HardMute(bit MuteState)
 	return OK;
 
 }
-
-/******************* (C) COPYRIGHT 2009 SENLi *****END OF FILE****/
-
