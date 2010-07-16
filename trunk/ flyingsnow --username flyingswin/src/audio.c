@@ -242,11 +242,14 @@ void AudioMain(void)
 	}
 	}
 
-	if(VolDispTimer == 0 && ChangeVolFlag == TRUE) {
-		EQ_Item = VOL_EQ;
-		if(System.WorkMode.Current == WORKMODE_RADIO)
-			System.DispMode = DISPLAY_RADIO;
-		else 
-			System.DispMode = DISPLAY_AUX;	
+	if(System.DispMode == DISPLAY_AUDIO) {
+		if(VolDispTimer == 0 && ChangeVolFlag == TRUE) {
+			EQ_Item = VOL_EQ;
+			ChangeVolFlag = FALSE;
+			if(System.WorkMode.Current == WORKMODE_RADIO)
+				System.DispMode = DISPLAY_RADIO;
+			else 
+				System.DispMode = DISPLAY_AUX;	
+		}
 	}
 }

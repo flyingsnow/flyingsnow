@@ -92,7 +92,7 @@ main()
 			gKeyEvent = AdcKeyEventGet();
 			SysCommnKey();
 			Power_main();
-		//	ClockMain();
+			ClockMain();
 			if(System.PowerMode == POWERMODE_POWERON) {
 				switch(System.WorkMode.Current) {
 				case WORKMODE_RADIO:
