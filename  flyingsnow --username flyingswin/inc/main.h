@@ -13,6 +13,7 @@
 #include "si4730.h"
 #include "audio.h"
 #include "power.h"
+#include "clock.h"
 
 
 typedef struct workmodestc { 

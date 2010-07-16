@@ -41,14 +41,14 @@ BYTE CODE AdcKeyEvent[][4] =
 	{IN_KEY_NONE,			IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	//NO KEY
 	
 	{IN_KEY_AST_SP, 		IN_KEY_AST_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},	
-	{IN_KEY_VOL_SUB,		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	
+	{IN_KEY_VOL_SUB,		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_VOL_SUB 		},	
 	{IN_KEY_CLK_SP, 		IN_KEY_CLK_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},	
 	{IN_KEY_NEXT_SP,		IN_KEY_NEXT_CP, 	IN_KEY_NEXT_CPR,IN_KEY_NEXT_CPC 	},	
 	{IN_KEY_PRE_SP, 		IN_KEY_PRE_CP,		IN_KEY_PRE_CPR, IN_KEY_PRE_CPC		},		
 	{IN_KEY_BAND_SP,		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	
 	{IN_KEY_MOD_SP, 		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	
 	{IN_KEY_PWR_SP, 		IN_KEY_PWR_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},	
-	{IN_KEY_VOL_ADD,		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_NONE 		},	
+	{IN_KEY_VOL_ADD,		IN_KEY_NONE,		IN_KEY_NONE,	IN_KEY_VOL_ADD 		},	
 	{IN_KEY_SEL_SP, 		IN_KEY_SEL_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},			
 	{IN_KEY_P6_SP,			IN_KEY_P6_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},	
 	{IN_KEY_P5_SP,			IN_KEY_P5_CP,		IN_KEY_NONE,	IN_KEY_NONE 		},	
@@ -201,13 +201,17 @@ AdcKeyEventGet(VOID)
 			break;
 
 		case ADC_KEY_STATE_PRESS_DOWN:
+			/*immediately response key action */
 			switch(PreKeyIndex) {
-			case 7:
+			case 2:		//vol-
+			case 9:		//vol+
+			case 6:		//band
+			case 7:		//mode
 				AdcKeyState = ADC_KEY_STATE_CP;
 				return AdcKeyEvent[PreKeyIndex][0];
 				break;
 
-			case 8:
+			case 8:		//power
 				if(System.PowerMode == POWERMODE_POWEROFF) {
 					AdcKeyState = ADC_KEY_STATE_CP;
 					return AdcKeyEvent[PreKeyIndex][0];

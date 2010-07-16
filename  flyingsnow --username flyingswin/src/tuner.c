@@ -2,6 +2,7 @@
 
 
 UCHAR singlestepTimer;				//keep singlesetep tuner state 5s
+UCHAR ScanTimer;					//preset station scan conter 10s
 UCHAR PresetFlag = FALSE;			//preset station number
 enum BAND SaveBand = Band_FM1;		
 enum BAND CurrentBand = Band_FM1;
@@ -290,8 +291,7 @@ void Tuner_Seek(bit direction, bit ast, bit singlestep)
 			
 		case Seek_AMS:
 			if(stepnum <= (max-min)/step)
-			{
-				
+			{			
 				Rssi = Si4730_RSQ_Status(CurrentBand,Read_RSSI);
 				if(i > 6) {
 					for(j = 0; j < PresetNum; j++) {
@@ -328,6 +328,7 @@ void TunerMain(void)
 		switch(gKeyEvent) {
 
 		case IN_KEY_NEXT_SP:
+			if(ClockState == TRUE) break;	//setting clock
 			if(TunerStatus == Status_Single) {
 				direction = TRUE;
 				SeekState = Seek_Request;			
@@ -349,6 +350,7 @@ void TunerMain(void)
 			break;
 
 		case IN_KEY_NEXT_CP:
+			if(ClockState == TRUE) break;	//setting clock
 			direction = TRUE;
 			TunerStatus = Status_Single;
 			SeekState = Seek_Configure; 
@@ -361,6 +363,7 @@ void TunerMain(void)
 			break;
 			
 		case IN_KEY_NEXT_CPC:
+			if(ClockState == TRUE) break;	//setting clock
 			direction = TRUE;
 			TunerStatus = Status_Single;
 			SeekState = Seek_Request; 			
@@ -368,11 +371,13 @@ void TunerMain(void)
 			break;
 			
 		case IN_KEY_NEXT_CPR:
+			if(ClockState == TRUE) break;	//setting clock
 			SeekState = Seek_Idle; 			
 			singlestepTimer = 10;	//5s
 			break;
 
 		case IN_KEY_PRE_SP:
+			if(ClockState == TRUE) break;	//setting clock
 			if(TunerStatus == Status_Single) {
 				direction = FALSE;
 				SeekState = Seek_Request;			
@@ -394,6 +399,7 @@ void TunerMain(void)
 			break;
 
 		case IN_KEY_PRE_CP:
+			if(ClockState == TRUE) break;	//setting clock
 			direction = FALSE;
 			TunerStatus = Status_Single;
 			singlestepTimer = 10;
@@ -406,6 +412,7 @@ void TunerMain(void)
 			break;
 
 		case IN_KEY_PRE_CPC:			
+			if(ClockState == TRUE) break;	//setting clock
 			direction = FALSE;
 			TunerStatus = Status_Single;
 			SeekState = Seek_Request; 			
@@ -413,6 +420,7 @@ void TunerMain(void)
 			break;
 
 		case IN_KEY_PRE_CPR:
+			if(ClockState == TRUE) break;	//setting clock
 			SeekState = Seek_Idle;			
 			singlestepTimer = 10;	//5s
 			break;
@@ -428,9 +436,17 @@ void TunerMain(void)
 			
 			SC7313_Driver(Channel_Radio);
 			break;
-
+			
 		case IN_KEY_AST_SP:
-
+			if(TunerStatus != Status_Scan) {
+				ScanTimer = 0;
+				PresetFlag = PRESET6;			
+				TunerStatus = Status_Scan;
+			}
+			else {
+				TunerStatus = Status_Idle;
+			}
+			SeekState = Seek_Configure;
 			break;
 
 		case IN_KEY_AST_CP:
@@ -494,7 +510,15 @@ void TunerMain(void)
 		break;
 
 	case Status_Scan:
-
+		if(ScanTimer == 0) {
+			if(PresetFlag == PRESET6)
+				PresetFlag = PRESET1;
+			else 
+				PresetFlag++;
+			Tuner_TunetoPreset(PresetFlag);
+			ScanTimer = 20;
+		}
+		
 		break;
 		
 	default:break;

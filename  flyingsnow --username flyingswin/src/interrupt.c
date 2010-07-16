@@ -1,6 +1,7 @@
 #include "main.h"
 
 extern UCHAR singlestepTimer;	//keep singlesteip tuner state 5s
+extern UCHAR ScanTimer;
 //
 // System tick 5ms initilization.
 //
@@ -62,6 +63,14 @@ Timer3(void)				interrupt 11
 
 	if(singlestepTimer > 0)
 		singlestepTimer--;
+
+	if(SetClockTimer > 0)
+		SetClockTimer--;
+
+	if(ScanTimer > 0)
+		ScanTimer--;
+
+	Blink = ~Blink;
 	
 	EA = 1;
 }

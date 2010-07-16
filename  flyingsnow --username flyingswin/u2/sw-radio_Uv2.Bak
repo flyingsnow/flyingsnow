@@ -124,7 +124,7 @@ Options 1,0,0  // Target 'SW-RADIO'
  LX51IDS ()
   OPTDL (S8051.DLL)()(DP51.DLL)(-p51)(S8051.DLL)()(TP51.DLL)(-p51)
   OPTDBG 49150,8,()()()()()()()()()() (BIN\SH51.DLL)()()()
- FLASH1 { 9,0,0,0,1,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0 }
+ FLASH1 { 1,0,0,0,1,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0 }
  FLASH2 (BIN\SH51.DLL)
  FLASH3 ("" ())
  FLASH4 ()

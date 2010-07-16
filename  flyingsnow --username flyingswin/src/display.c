@@ -3,11 +3,11 @@
 //UCHAR DispRefresh;
 
 UCHAR CODE EQ_Buff[25] = { 0x8A,0xfA,0x24,0x60,0x00,	//VOL
-				 0x00,0xd6,0xd1,0x6D,0xd0,  //BAS
-				 0x00,0x9E,0x59,0x60,0x50,  //TRE
-				 0x00,0x8A,0xD1,0x6D,0xd0,	//BAL
-				 0x00,0xeC,0xd1,0x64,0x16   //FAD
-				};
+						 0x00,0xd6,0xd1,0x6D,0xd0,  //BAS
+						 0x00,0x9E,0x59,0x60,0x50,  //TRE
+						 0x00,0x8A,0xD1,0x6D,0xd0,	//BAL
+						 0x00,0xeC,0xd1,0x64,0x16   //FAD
+						};
 
 UCHAR CODE VolMap[7] = {0x80,0xc4,0xc6,0xe6,0xe7,0xf7,0xf7};
 UCHAR CODE Num[10] = {0xFA,0x60,0xBC,0xF4,0x66,0xD6,0xDE,0x70,0xFE,0xF6};
@@ -170,26 +170,21 @@ VOID DispClk(VOID)
 		DispBuff[0] = 0x00;
 	else		
 		DispBuff[0] = 0x20;
-#if 0		
-
-//	if(System.DispMode.Current == DISPMODE_CCLOCK && t_100ms > 4 ) {
-		if( ClockStatus == CLK_CHour && t_100ms > 4 ) {
+#if 1		
+	if(ClockState == TRUE) {			//setting clock
+		if(SetFlag == FALSE && Blink) {
 			DispBuff[7] = 0x00;   
 			DispBuff[6] = 0x00;			
-			DispBuff[0] = 0x20;
+//			DispBuff[0] = 0x20;
 		}
-		if(ClockStatus == CLK_CMin&& t_100ms > 4 ) {
+		if(SetFlag == TRUE && Blink) {
 			DispBuff[9] = 0x00;   
 			DispBuff[8] = 0x00;
-			DispBuff[0] = 0x20;
 		}
-//		DispBuff[11] |= 0x02;
-//	}
-   
-   DispRefresh = 1;
+		DispBuff[0] = 0x20;
+	}
 #endif
 }
-
 
 //Volum indication 
 static VOID DispVolum(VOID)
@@ -326,23 +321,23 @@ VOID DisplayMain(VOID)
 
 		case DISPLAY_RADIO:
 			DispFreq();
-			if(TunerStatus == Status_Idle) {
-				//disp stereo bit	
+			if(TunerStatus == Status_Idle || TunerStatus == Status_Scan) {
+				
 				if(Si4730_RSQ_Status(SaveBand,Read_PILOT))
-					DispBuff[0] |= 0x10;
+					DispBuff[0] |= 0x10;					//disp stereo bit	
 				else 
 					DispBuff[0] &= 0xE0;
-
+				
 				if(Tuner_IsPreset() >= PresetNum) 
 					DispBuff[10] = 0x00;
 				else					
-					DispBuff[10] = Num[PresetFlag+1];				
-			}
-			else {				
-				DispBuff[11] &= 0xF7;
+					DispBuff[10] = Num[PresetFlag+1];
+				
+				if(TunerStatus == Status_Scan && Blink)
+					DispBuff[10] = 0x00;
 			}
 			break;
-
+			
 		case DISPLAY_AUX:
 			DispBuff[5]=0x7E;		//A
 			DispBuff[6]=0xEA;		//U 
